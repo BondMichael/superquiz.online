@@ -27,7 +27,7 @@
             margin: 40px auto;
             max-width: 800px;
             padding: 10px;
-            padding-top: 70px; /* Add padding to accommodate fixed header */
+            padding-top: 70px;
         }
         .question {
             margin-bottom: 20px;
@@ -60,18 +60,16 @@
             margin-top: 20px;
             font-weight: bold;
         }
-        /* Add these styles to your body and html elements */
+		
         html, body {
           height: 100%;
           margin: 0;
         }
 
-        /* Main content area that will grow to push footer down */
         main {
-          flex: 1 0 auto; /* This makes the main content expand */
+          flex: 1 0 auto;
         }
 
-        /* Header styling for horizontal alignment */
         .header {
             display: flex;
             justify-content: space-between;
@@ -89,14 +87,12 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        /* Center title and adjust width */
         .header h2 {
             margin: 0;
             text-align: center;
             flex-grow: 1;
         }
 
-        /* Home button */
         .home-button {
             width: 44px;
             height: 44px;
@@ -115,7 +111,6 @@
             background-color: rgba(52, 152, 219, 0.1);
         }
 
-        /* New SVG Home Icon with primary color */
         .home-icon {
             width: 24px;
             height: 24px;
@@ -127,14 +122,12 @@
             fill: #2980b9;
         }
         
-        /* Footer Styling */
         .footer {
             background-color: #ffffff;
             color: #000000;
             text-align: bottom;
             padding: 5px;
             margin-top: 50px;
-    /*         width: 100%; */
             max-width: 800px;
             flex-shrink: 0;
         }
@@ -154,13 +147,13 @@
         }
         
         .footer-email {
-            color: #3498db; /* blue color for the email link */
+            color: #3498db;
             text-decoration: none;
             transition: color 0.3s ease;
         }
         
         .footer-email:hover {
-            color: #2980b9; /* darker blue on hover */
+            color: #2980b9;
             text-decoration: underline;
         }
         
@@ -177,7 +170,6 @@
             font-size: 1.3em;
         }
 
-        /* Progress bar styles */
         .score-display {
             font-size: 18px;
             font-weight: bold;
@@ -221,7 +213,6 @@
     </div>
     <div id="passageContainer"></div> <form id="quizForm"></form>
     
-    <!-- Adding score display container -->
     <div class="score-display" id="scoreDisplay" style="display: none;">
         <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
         <div class="progress-container">
@@ -575,19 +566,16 @@
                     resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
                     document.getElementById("result").innerHTML = resultText;
                     
-                    // Show score display
                     const scoreDisplay = document.getElementById("scoreDisplay");
                     scoreDisplay.style.display = "block";
                     document.getElementById("scoreValue").textContent = score;
                     document.getElementById("totalQuestions").textContent = total;
                     
-                    // Update progress bar
                     const percentage = Math.round((score / total) * 100);
                     const progressBar = document.getElementById("progressBar");
                     progressBar.style.width = `${percentage}%`;
                     progressBar.textContent = `${percentage}%`;
                     
-                    // Color code the progress bar
                     if (score < 12) {
                         progressBar.style.backgroundColor = "#dc3545"; // Red
                     } else if (score < 20) {
@@ -607,21 +595,6 @@
                     // Save the score
                     localStorage.setItem(testKey, score);
                 });
-
-        // fetch(`json/${diffValue}/test${iValue}.json`) // Path to your JSON file
-        //     .then(response => {
-        //         console.log("Response Status:", response.status);
-        //         return response.json();
-        //     })
-        //     .then(data => {
-        //         console.log("JSON Data:", data);
-
-                
-        //     })
-        //     .catch(error => {
-        //         console.error('Error loading questions:', error);
-        //         console.error("Fetch Error Details:", error);
-        //     });
     </script>
     <footer class="footer">
     <div class="footer-content">
