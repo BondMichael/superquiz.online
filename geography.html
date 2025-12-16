@@ -253,7 +253,7 @@
         }
 
         .test-square {
-            width: 120px;
+            width: 170px;
             height: 50px;
             border-radius: var(--border-radius);
             background-color: var(--text-color-light);
@@ -491,7 +491,7 @@
                 // Create the test number element
                 const numberElement = document.createElement('div');
                 numberElement.classList.add('test-square-number');
-                numberElement.textContent = i;
+                numberElement.textContent = `General ${i}`;
                 
                 // Create the divider
                 const divider = document.createElement('div');
@@ -518,7 +518,7 @@
                 square.appendChild(scoreElement);
             } else {
                 // No score yet, use the original simple layout with just the number
-                square.textContent = i;
+                square.textContent = `General ${i}`;
             }
             
             // Set the click handler
