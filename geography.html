@@ -51,7 +51,7 @@
         /* Color Palette - Modern UI/UX - Matching the index.html */
         :root {
             --primary-background: #ffffff;
-            --primary-color: #3498db;
+            --primary-color: #23236E;
             --primary-color-darker: #2980b9;
             --primary-color-lighter: #5dade2;
             --secondary-color: #f0f0f0;
@@ -133,7 +133,7 @@
         /* Animation for sandwich menu */
         .sandwich-menu-button.active .sandwich-bar:nth-child(1) {
             transform: translateY(7px) rotate(45deg);
-            background-color: var(--primary-color-darker);
+            background-color: var(--primary-color);
         }
         
         .sandwich-menu-button.active .sandwich-bar:nth-child(2) {
@@ -142,7 +142,7 @@
         
         .sandwich-menu-button.active .sandwich-bar:nth-child(3) {
             transform: translateY(-7px) rotate(-45deg);
-            background-color: var(--primary-color-darker);
+            background-color: var(--primary-color);
         }
 
         /* Home button */
@@ -357,7 +357,7 @@
     }
     
     .footer-email {
-        color: #3498db; /* blue color for the email link */
+        color: #23236E; /* blue color for the email link */
         text-decoration: none;
         transition: color 0.3s ease;
     }
@@ -476,7 +476,7 @@
 
         let currentDiff = "A1";
         
-        for (let i = 1; i <= 50; i++) {
+        for (let i = 1; i <= 8; i++) {
             const square = document.createElement('div');
             square.classList.add('test-square');
             
