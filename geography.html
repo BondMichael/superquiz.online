@@ -283,7 +283,7 @@
         
         .test-square-divider {
             width: 1px;
-            height: 80%;
+            height: 70%;
             background-color: currentColor;
             margin: 2px 0;
         }
@@ -509,7 +509,30 @@
                 
                 const numberElement = document.createElement('div');
                 numberElement.classList.add('test-square-number');
-                numberElement.textContent = `General ${i}`;
+                let name;
+                switch(test_names[i]) {
+                    case "africa": 
+                        name = "Africa";
+                        break;
+                    case "asia": 
+                        name = "Asia";
+                        break;
+                    case "australia": 
+                        name = "Australia";
+                        break;
+                    case "europe": 
+                        name = "Europe";
+                        break;
+                    case "northamerica": 
+                        name = "North America";
+                        break;
+                    case "southamerica": 
+                        name = "South America";
+                        break;
+                    default:
+                        name = `General ${i}`;
+                }
+                numberElement.textContent = name;
                 
                 const divider = document.createElement('div');
                 divider.classList.add('test-square-divider');
