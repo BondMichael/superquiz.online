@@ -265,7 +265,7 @@
         }
         
         .test-square.has-score {
-            flex-direction: column;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
             padding: 5px 0;
@@ -273,17 +273,17 @@
         
         .test-square-number {
             font-size: 0.9em;
-            margin-top: 2px;
+            /* margin-top: 2px; */
         }
         
         .test-square-score {
             font-size: 0.9em;
-            margin-bottom: 10px;
+            /* margin-bottom: 2px; */
         }
         
         .test-square-divider {
-            width: 80%;
-            height: 1px;
+            width: 1px;
+            height: 80%;
             background-color: currentColor;
             margin: 2px 0;
         }
@@ -485,6 +485,8 @@
                 square.appendChild(numberElement);
                 square.appendChild(divider);
                 square.appendChild(scoreElement);
+
+                // square.textContent = `General ${i} | ${savedScore}/24`
             } else {
                 square.textContent = `General ${i}`;
             }
