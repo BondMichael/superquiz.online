@@ -452,7 +452,7 @@
 
         const gridContainer = document.querySelector('.test-squares-grid');
         
-        for (let i = 1; i <= 8; i++) {
+        for (let i = 1; i <= 6; i++) {
             const square = document.createElement('div');
             square.classList.add('test-square');
             
@@ -491,6 +491,74 @@
             
             square.addEventListener('click', function() {
                 window.location.href = `https://superquiz.online/geography/general${i}`;
+            });
+            
+            gridContainer.appendChild(square);
+        }
+
+        const test_names = ["africa", "asia", "australia", "europe", "northamerica", "southamerica"];
+        for (let i = 1; i <= 6; i++) {
+            const square = document.createElement('div');
+            square.classList.add('test-square');
+            
+            const testKey = `geography-${test_names[i]}-${i}`;
+            const savedScore = localStorage.getItem(testKey);
+            
+            if (savedScore !== null) {
+                square.classList.add('has-score');
+                
+                const numberElement = document.createElement('div');
+                numberElement.classList.add('test-square-number');
+                numberElement.textContent = `General ${i}`;
+                
+                const divider = document.createElement('div');
+                divider.classList.add('test-square-divider');
+                
+                const scoreElement = document.createElement('div');
+                scoreElement.classList.add('test-square-score');
+                scoreElement.textContent = `${savedScore}/24`;
+                
+                const score = parseInt(savedScore, 10);
+                if (score >= 12) {
+                    square.classList.add('test-square-excellent');
+                } else if (score >= 20) {
+                    square.classList.add('test-square-good');
+                } else {
+                    square.classList.add('test-square-fail');
+                }
+                
+                square.appendChild(numberElement);
+                square.appendChild(divider);
+                square.appendChild(scoreElement);
+            } else {
+                let name;
+                switch(test_names[i]) {
+                    case "africa": 
+                        name = "Africa";
+                        break;
+                    case "asia": 
+                        name = "Asia";
+                        break;
+                    case "australia": 
+                        name = "Australia";
+                        break;
+                    case "europe": 
+                        name = "Europe";
+                        break;
+                    case "northamerica": 
+                        name = "North America";
+                        break;
+                    case "southamerica": 
+                        name = "South America";
+                        break;
+                    default:
+                        name = `General ${i}`;
+                }
+                square.textContent = name;
+            }
+            
+            square.addEventListener('click', function() {
+                window.location.href = `https://superquiz.online/geography/${test_names[i]}`;
             });
             
             gridContainer.appendChild(square);
