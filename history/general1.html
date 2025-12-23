@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	  <title>History Quiz | General 1 | superquiz.online</title>
+	  <meta name="description" content="Free History quiz online, no sign-up, instant results.">
+	  <meta name="keywords" content="Free History quiz online, General History, Ancient History, Middle Ages History, Renaissance History, Modern History, World War I, World War II">
+    <meta name="author" content="superquiz.online">
+  	<meta name="robots" content="index, follow">
+    <!-- Google Analytics (GA4) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2TNG0KVK8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K2TNG0KVK8');
+    </script> -->
+    <style>
+		html, body {
+          height: 100%;
+          /* margin: 0; */
+        }
+		
+        body {
+            font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+            margin: 40px auto;
+            max-width: 600px;
+            align-items: center;
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			width: 90%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            /* left: 0;
+            right: 0; */
+            z-index: 100;
+            max-width: 600px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .passage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #e3f2fd;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+        
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-button {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            fill: #23236E;
+            transition: fill 0.3s;
+        }
+
+        .home-button:hover .home-icon {
+            fill: #2980b9;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+            color: #000000;
+            text-align: bottom;
+            padding: 5px;
+            margin-top: 50px;
+            max-width: 800px;
+            flex-shrink: 0;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        
+        .footer-email {
+            color: #23236E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-email:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .footer-spacer {
+            height: 30px;
+            width: 100%;
+        }
+        
+        .footer-made {
+            margin-top: 10px;
+        }
+        
+        .footer-maker {
+            font-size: 1.3em;
+        }
+
+        .score-display {
+			width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            height: 24px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="javascript:history.back()" class="home-button">
+            <svg width="25.6" height="22.4" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.292893 7.29289C-0.097631 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292893 7.29289ZM18 7L1 7L1 9L18 9L18 7Z" fill="#23236E"/>
+            </svg>
+        </a>
+        <h2>General History 1</h2>
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="passageContainer"></div> <form id="quizForm"></form>
+    
+    <div class="score-display" id="scoreDisplay" style="display: none;">
+        <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+    <div id="result" class="result"></div>
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "question": "Which ancient civilization built the Great Pyramid of Giza?",
+    "options": {
+      "A": "The Sumerians",
+      "B": "The Persians",
+      "C": "The Babylonians",
+      "D": "The Egyptians"
+    },
+    "correct_answer": "D",
+    "category": "Ancient History"
+  },
+  {
+    "id": 2,
+    "question": "Who was the first President of the United States?",
+    "options": {
+      "A": "Thomas Jefferson",
+      "B": "Abraham Lincoln",
+      "C": "George Washington",
+      "D": "Benjamin Franklin"
+    },
+    "correct_answer": "C",
+    "category": "American History"
+  },
+  {
+    "id": 3,
+    "question": "Which global conflict lasted from 1939 to 1945?",
+    "options": {
+      "A": "World War I",
+      "B": "The Korean War",
+      "C": "The Vietnam War",
+      "D": "World War II"
+    },
+    "correct_answer": "D",
+    "category": "Modern Warfare"
+  },
+  {
+    "id": 4,
+    "question": "Which invention by Johannes Gutenberg revolutionized the spread of information in the 15th century?",
+    "options": {
+      "A": "The Printing Press",
+      "B": "The Steam Engine",
+      "C": "The Telescope",
+      "D": "The Compass"
+    },
+    "correct_answer": "A",
+    "category": "Renaissance"
+  },
+  {
+    "id": 5,
+    "question": "Who became the first female Prime Minister of the United Kingdom in 1979?",
+    "options": {
+      "A": "Theresa May",
+      "B": "Indira Gandhi",
+      "C": "Margaret Thatcher",
+      "D": "Angela Merkel"
+    },
+    "correct_answer": "C",
+    "category": "Political History"
+  },
+  {
+    "id": 6,
+    "question": "The 'Cold War' was primarily a geopolitical rivalry between which two superpowers?",
+    "options": {
+      "A": "United Kingdom and France",
+      "B": "United States and Soviet Union",
+      "C": "China and Soviet Union",
+      "D": "Germany and Russia"
+    },
+    "correct_answer": "B",
+    "category": "Cold War"
+  },
+  {
+    "id": 7,
+    "question": "Which famous leader fought against apartheid and became the first black president of South Africa?",
+    "options": {
+      "A": "Desmond Tutu",
+      "B": "Kofi Annan",
+      "C": "Haile Selassie",
+      "D": "Nelson Mandela"
+    },
+    "correct_answer": "D",
+    "category": "African History"
+  },
+  {
+    "id": 8,
+    "question": "Saint Peter’s Basilica, a major catholic church, is located in which city?",
+    "options": {
+      "A": "Vatican",
+      "B": "San Marino",
+      "C": "Rome",
+      "D": "Istanbul"
+    },
+    "correct_answer": "A",
+    "category": "Classical Antiquity"
+  },
+  {
+    "id": 9,
+    "question": "Which 1868 event marked the end of the Shogunate and returned power to the Emperor in Japan?",
+    "options": {
+      "A": "The Sengoku Period",
+      "B": "The Meiji Restoration",
+      "C": "The Taiping Rebellion",
+      "D": "The Boxer Rebellion"
+    },
+    "correct_answer": "B",
+    "category": "Asian History"
+  },
+  {
+    "id": 10,
+    "question": "Mansa Musa is historically renowned for his immense wealth and pilgrimage to Mecca as the ruler of which empire?",
+    "options": {
+      "A": "The Songhai Empire",
+      "B": "The Kingdom of Aksum",
+      "C": "The Mali Empire",
+      "D": "The Ghana Empire"
+    },
+    "correct_answer": "C",
+    "category": "Medieval Africa"
+  },
+  {
+    "id": 11,
+    "question": "The Battle of Hastings, which led to the Norman Conquest of England, took place in which year?",
+    "options": {
+      "A": "1066",
+      "B": "1215",
+      "C": "1415",
+      "D": "1485"
+    },
+    "correct_answer": "A",
+    "category": "European History"
+  },
+  {
+    "id": 12,
+    "question": "Which 'Liberator' led independence movements in Venezuela, Colombia, Ecuador, Peru, and Bolivia against Spanish rule?",
+    "options": {
+      "A": "José de San Martín",
+      "B": "Simón Bolívar",
+      "C": "Bernardo O'Higgins",
+      "D": "Toussaint Louverture"
+    },
+    "correct_answer": "B",
+    "category": "Latin American History"
+  },
+  {
+    "id": 13,
+    "question": "What was the primary purpose of the Council of Trent (1545–1563)?",
+    "options": {
+      "A": "To launch the First Crusade to Holy City of Jerusalem",
+      "B": "To unite the Eastern and Western Churches 400 years after their split",
+      "C": "To address the Protestant Reformation and reform the Catholic Church",
+      "D": "To divide the New World between Spain, France, the Netherlands and Portugal"
+    },
+    "correct_answer": "C",
+    "category": "Religious History"
+  },
+  {
+    "id": 14,
+    "question": "Which Chinese dynasty is associated with the initial construction of the Grand Canal and the reunification of China in the 6th century?",
+    "options": {
+      "A": "Han Dynasty",
+      "B": "Song Dynasty",
+      "C": "Tang Dynasty",
+      "D": "Sui Dynasty"
+    },
+    "correct_answer": "D",
+    "category": "Asian History"
+  },
+  {
+    "id": 15,
+    "question": "The Crimean War (1853–1856) is notable for the modern nursing practices introduced by whom?",
+    "options": {
+      "A": "Clara Barton",
+      "B": "Mary Seacole",
+      "C": "Florence Nightingale",
+      "D": "Edith Cavell"
+    },
+    "correct_answer": "C",
+    "category": "Military History"
+  },
+  {
+    "id": 16,
+    "question": "Which document was signed by King John in 1215, establishing the principle that everyone is subject to the law?",
+    "options": {
+      "A": "The Doomsday Book",
+      "B": "The Magna Carta",
+      "C": "The Petition of Right",
+      "D": "The Habeas Corpus Act"
+    },
+    "correct_answer": "B",
+    "category": "Legal History"
+  },
+  {
+    "id": 17,
+    "question": "The 'Golden Bull of 1356' was a decree that fixed the constitutional structure of which political entity?",
+    "options": {
+      "A": "The Holy Roman Empire",
+      "B": "The Byzantine Empire",
+      "C": "The Kingdom of Hungary",
+      "D": "The Papal States"
+    },
+    "correct_answer": "A",
+    "category": "Medieval Europe"
+  },
+  {
+    "id": 18,
+    "question": "Which conflict, fought between 1864 and 1870, resulted in the death of over half of Paraguay's population?",
+    "options": {
+      "A": "The Chaco War",
+      "B": "The War of the Pacific",
+      "C": "The War of the Triple Alliance",
+      "D": "The Cisplatine War"
+    },
+    "correct_answer": "C",
+    "category": "South American History"
+  },
+  {
+    "id": 19,
+    "question": "The Battle of Talas in 751 AD is historically significant for transferring which technology from China to the Islamic world?",
+    "options": {
+      "A": "Gunpowder formulation",
+      "B": "Compass navigation",
+      "C": "Silk cultivation",
+      "D": "Papermaking"
+    },
+    "correct_answer": "D",
+    "category": "Silk Road History"
+  },
+  {
+    "id": 20,
+    "question": "Which pre-Columbian civilization utilized a quipu (knotted strings) system for record-keeping instead of a written script?",
+    "options": {
+      "A": "The Maya",
+      "B": "The Aztec",
+      "C": "The Inca",
+      "D": "The Olmec"
+    },
+    "correct_answer": "C",
+    "category": "Pre-Columbian History"
+  },
+  {
+    "id": 21,
+    "question": "Who was the only female Emperor regnant in the history of China, founding her own short-lived Zhou dynasty?",
+    "options": {
+      "A": "Wu Zetian",
+      "B": "Ci Xi",
+      "C": "Jiang Qing",
+      "D": "Wang Zhaojun"
+    },
+    "correct_answer": "A",
+    "category": "Asian History"
+  },
+  {
+    "id": 22,
+    "question": "The Treaty of Waitangi (1840) established the British relationship with which indigenous people?",
+    "options": {
+      "A": "The Aborigines of Australia",
+      "B": "The Māori of New Zealand",
+      "C": "The Zulu of South Africa",
+      "D": "The Inuit of Canada"
+    },
+    "correct_answer": "B",
+    "category": "Oceanian History"
+  },
+  {
+    "id": 23,
+    "question": "Which 1683 battle marked the maximum westward expansion of the Ottoman Empire into Europe?",
+    "options": {
+      "A": "The Battle of Lepanto",
+      "B": "The Battle of Mohács",
+      "C": "The Siege of Belgrade",
+      "D": "The Battle of Vienna"
+    },
+    "correct_answer": "D",
+    "category": "Military History"
+  },
+  {
+    "id": 24,
+    "question": "The decipherment of Linear B in 1952 by Michael Ventris proved it was an early form of which language?",
+    "options": {
+      "A": "Minoan",
+      "B": "Greek",
+      "C": "Etruscan",
+      "D": "Phoenician"
+    },
+    "correct_answer": "B",
+    "category": "Archaeology"
+  }
+];
+
+                const form = document.getElementById("quizForm");
+                
+                questions.forEach((q, index) => {
+                    console.log("Processing Question:", q.id);
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionText = document.createElement("p");
+                    questionText.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+                    questionDiv.appendChild(questionText);
+
+                    Object.entries(q.options).forEach(([key, value]) => {
+                        const input = document.createElement("input");
+                        input.type = "radio";
+                        input.name = `q${q.id}`;
+                        input.value = key;
+
+                        const label = document.createElement("label");
+                        label.innerHTML = ` ${key}) ${value}<br>`;
+
+                        questionDiv.appendChild(input);
+                        questionDiv.appendChild(label);
+                    });
+
+                    form.appendChild(questionDiv);
+                });
+
+                document.getElementById("submitBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    let score = 0;
+                    let total = questions.length;
+                    let resultText = "<h3>Results:</h3>";
+
+                    questions.forEach(q => {
+                        let selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected) {
+                            if (selected.value === q.correct_answer) {
+                                score++;
+                                resultText += `<p>Question ${q.id}: Correct ✅</p>`;
+                            } else {
+                                resultText += `<p>Question ${q.id}: Incorrect ❌ (Correct: ${q.correct_answer})</p>`;
+                            }
+                        } else {
+                            resultText += `<p>Question ${q.id}: No answer selected ❌ (Correct: ${q.correct_answer})</p>`;
+                        }
+                    });
+
+                    resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
+                    document.getElementById("result").innerHTML = resultText;
+                    
+                    const scoreDisplay = document.getElementById("scoreDisplay");
+                    scoreDisplay.style.display = "block";
+                    document.getElementById("scoreValue").textContent = score;
+                    document.getElementById("totalQuestions").textContent = total;
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    const progressBar = document.getElementById("progressBar");
+                    progressBar.style.width = `${percentage}%`;
+                    progressBar.textContent = `${percentage}%`;
+                    
+                    if (score < 12) {
+                        progressBar.style.backgroundColor = "#dc3545"; // Red
+                    } else if (score < 20) {
+                        progressBar.style.backgroundColor = "#ffc107"; // Yellow
+                    } else {
+                        progressBar.style.backgroundColor = "#28a745"; // Green
+                    }
+                    
+                    // Create a unique key for this test
+                    const testKey = `history-general-1`;
+                    
+                    // Save the score
+                    localStorage.setItem(testKey, score);
+                });
+    </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <p>© Copyright 2026</p>
+        <p><a href="mailto:info@superquiz.online" class="footer-email">info@superquiz.online</a></p>
+        <p>All rights reserved</p>        
+        <p class="footer-made">Made by MB</p>
+    </div>
+    </footer>
+</body>
+</html>
