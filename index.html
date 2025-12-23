@@ -281,6 +281,34 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
 
+        .english-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 18px;
+            border-radius: var(--border-radius);
+            background-color: #3498db;
+            text-decoration: none;
+            color: var(--text-color-light);
+            font-size: 1.5em;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: all var(--transition-speed);
+            width: 100%;
+        }
+
+        .english-button:hover {
+            background-color: var(--primary-color-darker);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .english-button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
         /* Button Grid */
         .button-grid {
             display: grid;
@@ -529,7 +557,11 @@
     </div>
 
     <div class="main-button-container">
-        <a href="https://superquiz.online/general-knowledge" class="main-button" id="level-test-button">GENERAL KNOWLEDGE</a>
+        <a href="https://superquiz.online/general-knowledge" class="main-button">GENERAL KNOWLEDGE</a>
+    </div>
+
+    <div class="english-button-container">
+        <a href="https://englishtests.online/" class="english-button">ENGLISH TESTS</a>
     </div>
 
     <div class="button-grid">
@@ -537,11 +569,10 @@
         <a href="https://superquiz.online/history" class="level-button">HISTORY</a>
         <a href="https://superquiz.online/economy" class="level-button">ECONOMY</a>
         <a href="https://superquiz.online/sciences" class="level-button">SCIENCES</a>
+        <a href="https://superquiz.online/technology" class="level-button">TECHNOLOGY</a>
         <a href="https://superquiz.online/music" class="level-button">MUSIC</a>
         <a href="https://superquiz.online/cinema" class="level-button">CINEMA</a>
         <a href="https://superquiz.online/celebs" class="level-button">CELEBS</a>
-        <a href="https://englishtests.online/" class="level-button">ENGLISH</a>
-
     </div>
 
     <!-- Cookie Notice Window -->
@@ -592,27 +623,6 @@
             localStorage.setItem('cookieChoice', 'all');
             cookieNotice.style.display = 'none';
         });
-
-        function updateLevelButtonText() {
-            // Check if there's a saved English level
-            const userLevel = localStorage.getItem('userEnglishLevel');
-            
-            if (userLevel) {
-                // Find the button or link that leads to the English level test
-                // This selector might need adjustment based on your actual HTML structure
-                const levelTestButton = document.getElementById('level-test-button');
-                
-                if (levelTestButton) {
-                    // Update the button text to show the user's level
-                    levelTestButton.textContent = `Your English level is ${userLevel}`;
-
-                    // You might want to style it differently to make it stand out
-                    levelTestButton.style.backgroundColor = 'white';
-                    levelTestButton.style.border = '4px solid #23236E';
-                    levelTestButton.style.color = '#23236E';
-                }
-            }
-        }
 
         // Run the function when the page loads
         document.addEventListener('DOMContentLoaded', updateLevelButtonText);
