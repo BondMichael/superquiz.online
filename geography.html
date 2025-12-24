@@ -470,9 +470,6 @@
                 numberElement.classList.add('test-square-number');
                 numberElement.textContent = `GENERAL ${i}`;
                 
-                const divider = document.createElement('div');
-                divider.classList.add('test-square-divider');
-                
                 const scoreElement = document.createElement('div');
                 scoreElement.classList.add('test-square-score');
                 scoreElement.textContent = `${savedScore}/24`;
@@ -487,7 +484,6 @@
                 }
                 
                 square.appendChild(numberElement);
-                square.appendChild(divider);
                 square.appendChild(scoreElement);
             } else {
                 square.textContent = `GENERAL ${i}`;
@@ -538,9 +534,6 @@
                 }
                 numberElement.textContent = name;
                 
-                const divider = document.createElement('div');
-                divider.classList.add('test-square-divider');
-                
                 const scoreElement = document.createElement('div');
                 scoreElement.classList.add('test-square-score');
                 scoreElement.textContent = `${savedScore}/24`;
@@ -555,7 +548,6 @@
                 }
                 
                 square.appendChild(numberElement);
-                square.appendChild(divider);
                 square.appendChild(scoreElement);
             } else {
                 let name;
