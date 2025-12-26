@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	  <title>General Knowledge | Quiz 2 | superquiz.online</title>
+	  <meta name="description" content="Free General Knowledge quiz online, no sign-up, instant results.">
+	  <meta name="keywords" content="Free General Knowledge quiz online, History quiz, Geography quiz, Science quiz, Sports quiz, Music quiz, Culture quiz">
+    <meta name="author" content="superquiz.online">
+  	<meta name="robots" content="index, follow">
+    <!-- Google Analytics (GA4) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2TNG0KVK8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K2TNG0KVK8');
+    </script> -->
+    <style>
+		html, body {
+          height: 100%;
+          /* margin: 0; */
+        }
+		
+        body {
+            font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+            margin: 40px auto;
+            max-width: 600px;
+            align-items: center;
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			width: 90%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            /* left: 0;
+            right: 0; */
+            z-index: 100;
+            max-width: 600px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .passage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #e3f2fd;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+        
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-button {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            fill: #23236E;
+            transition: fill 0.3s;
+        }
+
+        .home-button:hover .home-icon {
+            fill: #2980b9;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+            color: #000000;
+            text-align: bottom;
+            padding: 5px;
+            margin-top: 50px;
+            max-width: 800px;
+            flex-shrink: 0;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        
+        .footer-email {
+            color: #23236E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-email:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .footer-spacer {
+            height: 30px;
+            width: 100%;
+        }
+        
+        .footer-made {
+            margin-top: 10px;
+        }
+        
+        .footer-maker {
+            font-size: 1.3em;
+        }
+
+        .score-display {
+			width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            height: 24px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="javascript:history.back()" class="home-button">
+            <svg width="25.6" height="22.4" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.292893 7.29289C-0.097631 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292893 7.29289ZM18 7L1 7L1 9L18 9L18 7Z" fill="#23236E"/>
+            </svg>
+        </a>
+        <h2>General Knowledge 2</h2>
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="passageContainer"></div> <form id="quizForm"></form>
+    
+    <div class="score-display" id="scoreDisplay" style="display: none;">
+        <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+    <div id="result" class="result"></div>
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "question": "In the standard game of Monopoly, what color is the property set containing 'Park Place' and 'Boardwalk'?",
+    "options": {
+      "A": "Green",
+      "B": "Blue",
+      "C": "Yellow",
+      "D": "Red"
+    },
+    "correct_answer": "B",
+    "category": "Board Games"
+  },
+  {
+    "id": 2,
+    "question": "Which major ocean is located directly to the west of Mexico?",
+    "options": {
+      "A": "Pacific Ocean",
+      "B": "Indian Ocean",
+      "C": "Atlantic Ocean",
+      "D": "Arctic Ocean"
+    },
+    "correct_answer": "A",
+    "category": "Geography"
+  },
+  {
+    "id": 3,
+    "question": "Which gas do plants primarily absorb from the atmosphere during photosynthesis?",
+    "options": {
+      "A": "Oxygen",
+      "B": "Nitrogen",
+      "C": "Carbon dioxide",
+      "D": "Hydrogen"
+    },
+    "correct_answer": "C",
+    "category": "Biology"
+  },
+  {
+    "id": 4,
+    "question": "Who painted the famous artwork 'The Starry Night'?",
+    "options": {
+      "A": "Claude Monet",
+      "B": "Vincent van Gogh",
+      "C": "Pablo Picasso",
+      "D": "Paul Cézanne"
+    },
+    "correct_answer": "B",
+    "category": "Art"
+  },
+  {
+    "id": 5,
+   "question": "What is the primary material used to make the filament in traditional incandescent light bulbs?",
+    "options": {
+      "A": "Nickel",
+      "B": "Chrome",
+      "C": "Aluminum",
+      "D": "Tungsten"
+    },
+    "correct_answer": "D",
+    "category": "Technology"
+  },
+  {
+    "id": 6,
+    "question": "Which ancient wonder of the world is the only one still standing today?",
+    "options": {
+      "A": "Hanging Gardens of Babylon",
+      "B": "Colossus of Rhodes",
+      "C": "Great Pyramid of Giza",
+      "D": "Lighthouse of Alexandria"
+    },
+    "correct_answer": "C",
+    "category": "Ancient History"
+  },
+  {
+    "id": 7,
+    "question": "In the measurement of digital storage, how many bits typically make up one byte?",
+    "options": {
+      "A": "Two",
+      "B": "Four",
+      "C": "Eight",
+      "D": "Sixteen"
+    },
+    "correct_answer": "C",
+    "category": "Computer Science"
+  },
+  {
+    "id": 8,
+   "question": "Which zodiac sign is represented by the symbol of the Scales?",
+    "options": {
+      "A": "Libra",
+      "B": "Gemini",
+      "C": "Scorpio",
+      "D": "Aquarius"
+    },
+    "correct_answer": "A",
+    "category": "Astrology"
+  },
+  {
+    "id": 9,
+    "question": "In which year was the Berlin Wall built, marking a symbolic border in the times of the Cold War?",
+    "options": {
+      "A": "1956",
+      "B": "1961",
+      "C": "1963",
+      "D": "1965"
+    },
+    "correct_answer": "B",
+    "category": "Modern History"
+  },
+  {
+    "id": 10,
+    "question": "Which economist is best known for the concept of 'creative destruction' in capitalist economies?",
+    "options": {
+      "A": "John Maynard Keynes",
+      "B": "Friedrich Hayek",
+      "C": "Milton Friedman",
+      "D": "Joseph Schumpeter"
+    },
+    "correct_answer": "D",
+    "category": "Economics"
+  },
+  {
+    "id": 11,
+    "question": "What is the name of the boundary that separates the Earth's troposphere from the stratosphere?",
+    "options": {
+      "A": "Mesopause",
+      "B": "Tropopause",
+      "C": "Stratopause",
+      "D": "Thermopause"
+    },
+    "correct_answer": "B",
+    "category": "Meteorology"
+  },
+  {
+    "id": 12,
+    "question": "Which African country was formerly known as Abyssinia?",
+    "options": {
+      "A": "Eritrea",
+      "B": "Somalia",
+      "C": "Ethiopia",
+      "D": "Sudan"
+    },
+    "correct_answer": "C",
+    "category": "Geography"
+  },
+  {
+    "id": 13,
+    "question": "Who developed the first practical vaccine for rabies in 1885?",
+    "options": {
+      "A": "Louis Pasteur",
+      "B": "Robert Koch",
+      "C": "Edward Jenner",
+      "D": "Jonas Salk"
+    },
+    "correct_answer": "A",
+    "category": "Medical Science"
+  },
+  {
+    "id": 14,
+    "question": "Which programming language, created in 1991, is named after a British comedy group?",
+    "options": {
+      "A": "Ruby",
+      "B": "Java",
+      "C": "Python",
+      "D": "Perl"
+    },
+    "correct_answer": "C",
+    "category": "Technology"
+  },
+  {
+    "id": 15,
+   "question": "The 'Rubicon' is a shallow river in northeastern Italy famously crossed by which leader, sparking a civil war?",
+    "options": {
+      "A": "Augustus",
+      "B": "Julius Caesar",
+      "C": "Hannibal",
+      "D": "Mark Antony"
+    },
+    "correct_answer": "B",
+    "category": "Ancient History"
+  },
+  {
+    "id": 16,
+    "question": "Which vitamin is primarily produced by the body when skin is exposed to ultraviolet B (UVB) radiation?",
+    "options": {
+      "A": "Vitamin A",
+      "B": "Vitamin B",
+      "C": "Vitamin C",
+      "D": "Vitamin D"
+    },
+    "correct_answer": "D",
+    "category": "Health"
+  },
+  {
+    "id": 17,
+    "question": "What is the term for the phenomenon where a celestial body passes directly between a larger body and the observer, obscuring the view?",
+    "options": {
+      "A": "Transit",
+      "B": "Occultation",
+      "C": "Opposition",
+      "D": "Conjunction"
+    },
+    "correct_answer": "B",
+    "category": "Astronomy"
+  },
+  {
+    "id": 18,
+    "question": "Which Byzantine emperor commissioned the comprehensive legal code known as the Corpus Juris Civilis in the 6th century?",
+    "options": {
+      "A": "Constantine I",
+      "B": "Justinian I",
+      "C": "Theodosius II",
+      "D": "Basil II"
+    },
+    "correct_answer": "B",
+    "category": "Medieval History"
+  },
+  {
+    "id": 19,
+    "question": "In quantum mechanics, what is the name of the principle stating that certain pairs of physical properties cannot be simultaneously known to arbitrary precision?",
+    "options": {
+      "A": "Pauli Exclusion Principle",
+      "B": "Planck Constant Theorem",
+      "C": "Schrödinger Wave Equation",
+      "D": "Heisenberg Uncertainty Principle"
+    },
+    "correct_answer": "D",
+    "category": "Physics"
+  },
+  {
+    "id": 20,
+    "question": "Which of these literary sisters wrote the novel 'Wuthering Heights'?",
+    "options": {
+      "A": "Charlotte Brontë",
+      "B": "Emily Brontë",
+      "C": "Anne Brontë",
+      "D": "Jane Austen"
+    },
+    "correct_answer": "B",
+    "category": "Literature"
+  },
+  {
+    "id": 21,
+     "question": "Which specific U.S. President is the only one to have legally served as a hangman (executioner) earlier in his career?",
+    "options": {
+      "A": "Grover Cleveland",
+      "B": "Andrew Jackson",
+      "C": "Teddy Roosevelt",
+      "D": "Abraham Lincoln"
+    },
+    "correct_answer": "A",
+    "category": "Presidential Trivia"
+  },
+  {
+    "id": 22,
+    "question": "The 'Antikythera Mechanism', discovered in a shipwreck, is considered the ancient world's first example of what device?",
+    "options": {
+      "A": "Compass",
+      "B": "Engine",
+      "C": "Telescope",
+      "D": "Computer"
+    },
+    "correct_answer": "D",
+    "category": "Archaeology"
+  },
+  {
+    "id": 23,
+    "question": "In 1911, the 'Mona Lisa' was stolen from the Louvre. Which famous artist was arrested and questioned as a suspect?",
+    "options": {
+      "A": "Henri Matisse",
+      "B": "Pablo Picasso",
+      "C": "Salvador Dalí",
+      "D": "Claude Monet"
+    },
+    "correct_answer": "B",
+    "category": "Art History"
+  },
+  {
+    "id": 24,
+    "question": "Which rare earth element, with atomic number 62, is named after a Russian mining official and was first isolated in 1879?",
+    "options": {
+      "A": "Europium",
+      "B": "Gadolinium",
+      "C": "Samarium",
+      "D": "Terbium"
+    },
+    "correct_answer": "C",
+    "category": "Chemistry"
+  }
+];
+
+                const form = document.getElementById("quizForm");
+                
+                questions.forEach((q, index) => {
+                    console.log("Processing Question:", q.id);
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionText = document.createElement("p");
+                    questionText.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+                    questionDiv.appendChild(questionText);
+
+                    Object.entries(q.options).forEach(([key, value]) => {
+                        const input = document.createElement("input");
+                        input.type = "radio";
+                        input.name = `q${q.id}`;
+                        input.value = key;
+
+                        const label = document.createElement("label");
+                        label.innerHTML = ` ${key}) ${value}<br>`;
+
+                        questionDiv.appendChild(input);
+                        questionDiv.appendChild(label);
+                    });
+
+                    form.appendChild(questionDiv);
+                });
+
+                document.getElementById("submitBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    let score = 0;
+                    let total = questions.length;
+                    let resultText = "<h3>Results:</h3>";
+
+                    questions.forEach(q => {
+                        let selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected) {
+                            if (selected.value === q.correct_answer) {
+                                score++;
+                                resultText += `<p>Question ${q.id}: Correct ✅</p>`;
+                            } else {
+                                resultText += `<p>Question ${q.id}: Incorrect ❌ (Correct: ${q.correct_answer})</p>`;
+                            }
+                        } else {
+                            resultText += `<p>Question ${q.id}: No answer selected ❌ (Correct: ${q.correct_answer})</p>`;
+                        }
+                    });
+
+                    resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
+                    document.getElementById("result").innerHTML = resultText;
+                    
+                    const scoreDisplay = document.getElementById("scoreDisplay");
+                    scoreDisplay.style.display = "block";
+                    document.getElementById("scoreValue").textContent = score;
+                    document.getElementById("totalQuestions").textContent = total;
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    const progressBar = document.getElementById("progressBar");
+                    progressBar.style.width = `${percentage}%`;
+                    progressBar.textContent = `${percentage}%`;
+                    
+                    if (score < 12) {
+                        progressBar.style.backgroundColor = "#dc3545"; // Red
+                    } else if (score < 20) {
+                        progressBar.style.backgroundColor = "#ffc107"; // Yellow
+                    } else {
+                        progressBar.style.backgroundColor = "#28a745"; // Green
+                    }
+                    
+                    // Create a unique key for this test
+                    const testKey = `general-knowledge-2`;
+                    
+                    // Save the score
+                    localStorage.setItem(testKey, score);
+                });
+    </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <p>© Copyright 2026</p>
+        <p><a href="mailto:info@superquiz.online" class="footer-email">info@superquiz.online</a></p>
+        <p>All rights reserved</p>        
+        <p class="footer-made">Made by MB</p>
+    </div>
+    </footer>
+</body>
+</html>
