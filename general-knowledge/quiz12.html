@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	  <title>General Knowledge | Quiz 12 | superquiz.online</title>
+	  <meta name="description" content="Free General Knowledge quiz online, no sign-up, instant results.">
+	  <meta name="keywords" content="Free General Knowledge quiz online, History quiz, Geography quiz, Science quiz, Sports quiz, Music quiz, Culture quiz">
+    <meta name="author" content="superquiz.online">
+  	<meta name="robots" content="index, follow">
+    <!-- Google Analytics (GA4) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2TNG0KVK8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K2TNG0KVK8');
+    </script> -->
+    <style>
+		html, body {
+          height: 100%;
+          /* margin: 0; */
+        }
+		
+        body {
+            font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+            margin: 40px auto;
+            max-width: 600px;
+            align-items: center;
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			width: 90%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            /* left: 0;
+            right: 0; */
+            z-index: 100;
+            max-width: 600px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .passage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #e3f2fd;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+        
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-button {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            fill: #23236E;
+            transition: fill 0.3s;
+        }
+
+        .home-button:hover .home-icon {
+            fill: #2980b9;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+            color: #000000;
+            text-align: bottom;
+            padding: 5px;
+            margin-top: 50px;
+            max-width: 800px;
+            flex-shrink: 0;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        
+        .footer-email {
+            color: #23236E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-email:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .footer-spacer {
+            height: 30px;
+            width: 100%;
+        }
+        
+        .footer-made {
+            margin-top: 10px;
+        }
+        
+        .footer-maker {
+            font-size: 1.3em;
+        }
+
+        .score-display {
+			width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            height: 24px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="javascript:history.back()" class="home-button">
+            <svg width="25.6" height="22.4" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.292893 7.29289C-0.097631 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292893 7.29289ZM18 7L1 7L1 9L18 9L18 7Z" fill="#23236E"/>
+            </svg>
+        </a>
+        <h2>General Knowledge 12</h2>
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="passageContainer"></div> <form id="quizForm"></form>
+    
+    <div class="score-display" id="scoreDisplay" style="display: none;">
+        <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+    <div id="result" class="result"></div>
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "question": "Which toy, introduced in 1959, was named after the creator's daughter?",
+    "options": {
+      "A": "Chatty Cathy",
+      "B": "Easy-Bake Oven",
+      "C": "Barbie Doll",
+      "D": "Polly Pocket"
+    },
+    "correct_answer": "C",
+    "category": "Pop Culture"
+  },
+  {
+    "id": 2,
+    "question": "In the classic board game 'Clue' (or 'Cluedo'), which of the following is NOT one of the potential murder weapons?",
+    "options": {
+      "A": "Candlestick",
+      "B": "Lead Pipe",
+      "C": "Wrench",
+      "D": "Poison"
+    },
+    "correct_answer": "D",
+    "category": "Games"
+  },
+  {
+    "id": 3,
+    "question": "What was the largest airplane ever built?",
+    "options": {
+      "A": "Antonov An-225 Mriya",
+      "B": "Boeing 747 Dreamlifter",
+      "C": "Antonov An-124 Ruslan",
+      "D": "C-5M Super Galaxy"
+    },
+    "correct_answer": "A",
+    "category": "Planes"
+  },
+  {
+    "id": 4,
+    "question": "What is the primary ingredient in the traditional Middle Eastern dish 'hummus'?",
+    "options": {
+      "A": "Lentils",
+      "B": "Chickpeas",
+      "C": "Eggplant",
+      "D": "Fava Beans"
+    },
+    "correct_answer": "B",
+    "category": "Food & Drink"
+  },
+  {
+    "id": 5,
+    "question": "Which famous band was originally known as 'The Quarrymen' before they became world-famous?",
+    "options": {
+      "A": "The Rolling Stones",
+      "B": "The Beach Boys",
+      "C": "The Beatles",
+      "D": "Led Zeppelin"
+    },
+    "correct_answer": "C",
+    "category": "Music History"
+  },
+  {
+    "id": 6,
+    "question": "In the world of technology, what does the 'PDF' file extension stand for?",
+    "options": {
+      "A": "Portable Document Format",
+      "B": "Public Data File",
+      "C": "Printed Digital Form",
+      "D": "Personal Data Folder"
+    },
+    "correct_answer": "A",
+    "category": "Technology"
+  },
+  {
+    "id": 7,
+    "question": "Which organ in the human body is capable of regenerating itself even after 70% of it has been removed?",
+    "options": {
+      "A": "Heart",
+      "B": "Lung",
+      "C": "Liver",
+      "D": "Spleen"
+    },
+    "correct_answer": "C",
+    "category": "Biology"
+  },
+  {
+    "id": 8,
+    "question": "Who was the only US President to resign from office before his term ended?",
+    "options": {
+      "A": "Andrew Johnson",
+      "B": "Bill Clinton",
+      "C": "Herbert Hoover",
+      "D": "Richard Nixon"
+    },
+    "correct_answer": "D",
+    "category": "Political History"
+  },
+  {
+    "id": 9,
+    "question": "The 'Turing Test', proposed by Alan Turing in 1950, was originally designed to assess what capability?",
+    "options": {
+      "A": "Computer processing speed",
+      "B": "Machine intelligence",
+      "C": "Network latency",
+      "D": "Encryption strength"
+    },
+    "correct_answer": "B",
+    "category": "Computer Science"
+  },
+  {
+    "id": 10,
+    "question": "Which specific pigment is responsible for the red color of human blood cells?",
+    "options": {
+      "A": "Hemoglobin",
+      "B": "Melanin",
+      "C": "Chlorophyll",
+      "D": "Keratin"
+    },
+    "correct_answer": "A",
+    "category": "Anatomy"
+  },
+  {
+    "id": 11,
+    "question": "The 'Colossus of Rhodes', one of the Seven Wonders of the Ancient World, was a massive statue depicting which Greek god?",
+    "options": {
+      "A": "Zeus",
+      "B": "Poseidon",
+      "C": "Helios",
+      "D": "Apollo"
+    },
+    "correct_answer": "C",
+    "category": "Ancient History"
+  },
+  {
+    "id": 12,
+    "question": "In 1989, the 'Exxon Valdez' oil spill, one of the most devastating environmental disasters, occurred in the waters of which state?",
+    "options": {
+      "A": "Texas",
+      "B": "Louisiana",
+      "C": "Florida",
+      "D": "Alaska"
+    },
+    "correct_answer": "D",
+    "category": "Environmental History"
+  },
+  {
+    "id": 13,
+    "question": "Which acclaimed author wrote the dystopian novel 'The Handmaid's Tale', first published in 1985?",
+    "options": {
+      "A": "Virginia Woolf",
+      "B": "Margaret Atwood",
+      "C": "Ursula K. Le Guin",
+      "D": "Toni Morrison"
+    },
+    "correct_answer": "B",
+    "category": "Literature"
+  },
+  {
+    "id": 14,
+    "question": "What is the only rock that floats in water, formed from frothy lava cooling rapidly?",
+    "options": {
+      "A": "Obsidian",
+      "B": "Granite",
+      "C": "Pumice",
+      "D": "Basalt"
+    },
+    "correct_answer": "C",
+    "category": "Geology"
+  },
+  {
+    "id": 15,
+    "question": "The 'Plaza Accord' of 1985 was a financial agreement to depreciate the U.S. dollar against which two major currencies?",
+    "options": {
+      "A": "British Pound and French Franc",
+      "B": "Japanese Yen and German Mark",
+      "C": "Chinese Yuan and Soviet Ruble",
+      "D": "Canadian Dollar and Mexican Peso"
+    },
+    "correct_answer": "B",
+    "category": "Economics"
+  },
+  {
+    "id": 16,
+    "question": "Which chemical element was named after the Norse god of thunder?",
+    "options": {
+      "A": "Thorium",
+      "B": "Titanium",
+      "C": "Thulium",
+      "D": "Tantalum"
+    },
+    "correct_answer": "A",
+    "category": "Chemistry"
+  },
+  {
+    "id": 17,
+    "question": "The 'Voynich Manuscript', an undeciphered illustrated codex from the 15th century, is currently housed in which university's library?",
+    "options": {
+      "A": "Oxford",
+      "B": "Harvard",
+      "C": "Yale",
+      "D": "Cambridge"
+    },
+    "correct_answer": "C",
+    "category": "History & Cryptography"
+  },
+  {
+    "id": 18,
+    "question": "Which specific 'Battle of the Nations' in 1813 resulted in a decisive defeat for Napoleon prior to Waterloo?",
+    "options": {
+      "A": "Battle of Austerlitz",
+      "B": "Battle of Leipzig",
+      "C": "Battle of Borodino",
+      "D": "Battle of Trafalgar"
+    },
+    "correct_answer": "B",
+    "category": "Military History"
+  },
+  {
+    "id": 19,
+    "question": "In music theory, a 'hemidemisemiquaver' represents a note of what duration?",
+    "options": {
+      "A": "1/16th note",
+      "B": "1/32nd note",
+      "C": "1/64th note",
+      "D": "1/128th note"
+    },
+    "correct_answer": "C",
+    "category": "Music Theory"
+  },
+  {
+    "id": 20,
+    "question": "The 'Kardashev Scale' is a theoretical framework used by astrophysicists to measure what attribute of a civilization?",
+    "options": {
+      "A": "Technological advancement based on energy consumption",
+      "B": "Remarkable propensity for interstellar warfare",
+      "C": "Longevity and biological sustainability within natural habitat",
+      "D": "Complexity of communication systems beyond human comprehension"
+    },
+    "correct_answer": "A",
+    "category": "Astrophysics"
+  },
+  {
+    "id": 21,
+    "question": "Which author wrote under the pseudonym 'Saki' when publishing his witty and often macabre short stories?",
+    "options": {
+      "A": "Hector Hugh Munro",
+      "B": "Rudyard Kipling",
+      "C": "George Bernard Shaw",
+      "D": "William Golding"
+    },
+    "correct_answer": "A",
+    "category": "Literature"
+  },
+  {
+    "id": 22,
+    "question": "The 'Haber-Bosch process', crucial for modern agriculture, is an industrial method for synthesizing which chemical compound?",
+    "options": {
+      "A": "Sulfuric Acid",
+      "B": "Ammonia",
+      "C": "Polyethylene",
+      "D": "Nitroglycerin"
+    },
+    "correct_answer": "B",
+    "category": "Industrial Chemistry"
+  },
+  {
+    "id": 23,
+    "question": "Which obscure 14th-century treaty is arguably the world's longest-standing peace treaty, signed between England and Portugal?",
+    "options": {
+      "A": "Treaty of Windsor",
+      "B": "Treaty of Tordesillas",
+      "C": "Treaty of Utrecht",
+      "D": "Treaty of Zamora"
+    },
+    "correct_answer": "A",
+    "category": "Diplomatic History"
+  },
+  {
+    "id": 24,
+    "question": "In the taxonomy of living things, what is the specific term for the 'domain' of life that includes organisms with complex cells containing a nucleus?",
+    "options": {
+      "A": "Prokaryota",
+      "B": "Eukarya",
+      "C": "Archaea",
+      "D": "Monera"
+    },
+    "correct_answer": "B",
+    "category": "Biology"
+  }
+];
+
+                const form = document.getElementById("quizForm");
+                
+                questions.forEach((q, index) => {
+                    console.log("Processing Question:", q.id);
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionText = document.createElement("p");
+                    questionText.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+                    questionDiv.appendChild(questionText);
+
+                    Object.entries(q.options).forEach(([key, value]) => {
+                        const input = document.createElement("input");
+                        input.type = "radio";
+                        input.name = `q${q.id}`;
+                        input.value = key;
+
+                        const label = document.createElement("label");
+                        label.innerHTML = ` ${key}) ${value}<br>`;
+
+                        questionDiv.appendChild(input);
+                        questionDiv.appendChild(label);
+                    });
+
+                    form.appendChild(questionDiv);
+                });
+
+                document.getElementById("submitBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    let score = 0;
+                    let total = questions.length;
+                    let resultText = "<h3>Results:</h3>";
+
+                    questions.forEach(q => {
+                        let selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected) {
+                            if (selected.value === q.correct_answer) {
+                                score++;
+                                resultText += `<p>Question ${q.id}: Correct ✅</p>`;
+                            } else {
+                                resultText += `<p>Question ${q.id}: Incorrect ❌ (Correct: ${q.correct_answer})</p>`;
+                            }
+                        } else {
+                            resultText += `<p>Question ${q.id}: No answer selected ❌ (Correct: ${q.correct_answer})</p>`;
+                        }
+                    });
+
+                    resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
+                    document.getElementById("result").innerHTML = resultText;
+                    
+                    const scoreDisplay = document.getElementById("scoreDisplay");
+                    scoreDisplay.style.display = "block";
+                    document.getElementById("scoreValue").textContent = score;
+                    document.getElementById("totalQuestions").textContent = total;
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    const progressBar = document.getElementById("progressBar");
+                    progressBar.style.width = `${percentage}%`;
+                    progressBar.textContent = `${percentage}%`;
+                    
+                    if (score < 12) {
+                        progressBar.style.backgroundColor = "#dc3545"; // Red
+                    } else if (score < 20) {
+                        progressBar.style.backgroundColor = "#ffc107"; // Yellow
+                    } else {
+                        progressBar.style.backgroundColor = "#28a745"; // Green
+                    }
+                    
+                    // Create a unique key for this test
+                    const testKey = `general-knowledge-12`;
+                    
+                    // Save the score
+                    localStorage.setItem(testKey, score);
+                });
+    </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <p>© Copyright 2026</p>
+        <p><a href="mailto:info@superquiz.online" class="footer-email">info@superquiz.online</a></p>
+        <p>All rights reserved</p>        
+        <p class="footer-made">Made by MB</p>
+    </div>
+    </footer>
+</body>
+</html>
