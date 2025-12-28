@@ -61,9 +61,7 @@
 }
 </script>
     <style>
-        /* Color Palette - Modern UI/UX with Dark Theme Support */
         :root {
-            /* Light Theme */
             --primary-background: #ffffff;
             --primary-color: #23236E;
             --primary-color-darker: #2980b9;
@@ -77,7 +75,6 @@
             --border-radius: 10px;
         }
 
-        /* Dark Theme */
         [data-theme="dark"] {
             --primary-background: #1a1a1a;
             --primary-color: #23236E;
@@ -120,20 +117,18 @@
             position: relative;
         }
 
-        /* Site Name Styling */
         .site-name {
             font-size: 1.3em;
             font-weight: 600;
             color: #000000;
             flex-grow: 1;
             text-align: center;
-            margin-right: 44px; /* Balance the layout */
+            margin-right: 44px;
         }
 
-        /* Fixed Sandwich Menu to ensure visibility */
         .sandwich-menu-button {
-            width: 44px; /* Increased clickable area */
-            height: 44px; /* Increased clickable area */
+            width: 44px;
+            height: 44px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -149,19 +144,17 @@
             background-color: #3498DB;
         }
 
-        /* Fixed sandwich bars */
         .sandwich-bar {
-            width: 24px; /* Fixed width */
-            height: 3px; /* Slightly thicker for visibility */
+            width: 24px;
+            height: 3px;
             background-color: var(--primary-color);
-            margin: 2px 0; /* Space between bars */
+            margin: 2px 0;
             border-radius: 3px;
             transition: transform var(--transition-speed), 
                         opacity var(--transition-speed),
                         background-color var(--transition-speed);
         }
         
-        /* Animation for sandwich menu */
         .sandwich-menu-button.active .sandwich-bar:nth-child(1) {
             transform: translateY(7px) rotate(45deg);
             background-color: var(--primary-color);
@@ -176,10 +169,9 @@
             background-color: var(--primary-color);
         }
 
-        /* Enhanced Dropdown Menu */
         .dropdown-menu {
             position: absolute;
-            top: 50px; /* Adjusted to be below the menu button */
+            top: 50px;
             left: 0;
             background-color: var(--text-color-light);
             border-radius: var(--border-radius);
@@ -195,7 +187,7 @@
         }
 
         [data-theme="dark"] .dropdown-menu {
-            background-color: #2c2c2c; /* Darker background for dark theme */
+            background-color: #2c2c2c;
         }
 
         .dropdown-menu.active {
