@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	  <title>Cinema Quiz | General 2 | superquiz.online</title>
+	  <meta name="description" content="Free Cinema quiz online, no sign-up, instant results.">
+	  <meta name="keywords" content="Free Cinema quiz online, Actors quiz, Movies quiz, Franchises quiz, Series quiz">
+    <meta name="author" content="superquiz.online">
+  	<meta name="robots" content="index, follow">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91YPWNDHXE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-91YPWNDHXE');
+</script>
+    <style>
+		html, body {
+          height: 100%;
+          /* margin: 0; */
+        }
+		
+        body {
+            font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+            margin: 40px auto;
+            max-width: 600px;
+            align-items: center;
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			width: 90%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            /* left: 0;
+            right: 0; */
+            z-index: 100;
+            max-width: 600px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .passage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #e3f2fd;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+        
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-button {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            fill: #23236E;
+            transition: fill 0.3s;
+        }
+
+        .home-button:hover .home-icon {
+            fill: #2980b9;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+        color: #000000;
+        text-align: bottom;
+        padding: 5px;
+        margin-top: 50px;
+        width: 100%;
+        flex-shrink: 0;
+        font-size: small;
+        line-height: 12px;
+        position: relative;
+        bottom: 0px;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        
+        .footer-email {
+            color: #23236E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-email:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .footer-spacer {
+            height: 30px;
+            width: 100%;
+        }
+        
+        .footer-made {
+            margin-top: 10px;
+        }
+        
+        .footer-maker {
+            font-size: 1.3em;
+        }
+
+        .score-display {
+			width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            height: 24px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="javascript:history.back()" class="home-button">
+            <svg width="25.6" height="22.4" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.292893 7.29289C-0.097631 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292893 7.29289ZM18 7L1 7L1 9L18 9L18 7Z" fill="#23236E"/>
+            </svg>
+        </a>
+        <h2>General Cinema 2</h2>
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="passageContainer"></div> <form id="quizForm"></form>
+    
+    <div class="score-display" id="scoreDisplay" style="display: none;">
+        <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+    <div id="result" class="result"></div>
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "question": "Which streaming platform originally produced the series 'Stranger Things'?",
+    "options": {
+      "A": "Netflix",
+      "B": "Amazon Prime Video",
+      "C": "Disney Plus",
+      "D": "HBO Max"
+    },
+    "correct_answer": "A",
+    "category": "Cinema"
+  },
+  {
+    "id": 2,
+    "question": "In which decade did Technicolor feature films begin to receive widespread theatrical release in Hollywood?",
+    "options": {
+      "A": "1920s",
+      "B": "1930s",
+      "C": "1940s",
+      "D": "1950s"
+    },
+    "correct_answer": "B",
+    "category": "Cinema"
+  },
+  {
+    "id": 3,
+    "question": "Which studio is responsible for creating the character of Shrek?",
+    "options": {
+      "A": "Pixar Animation Studios",
+      "B": "DreamWorks Animation",
+      "C": "Blue Sky Studios",
+      "D": "Illumination Entertainment"
+    },
+    "correct_answer": "B",
+    "category": "Cinema"
+  },
+  {
+    "id": 4,
+    "question": "What is the name of the island where the dinosaurs are located in the original narrative of the Jurassic Park?",
+    "options": {
+      "A": "Isla Sorna",
+      "B": "Isla Verde",
+      "C": "Isla Muerta",
+      "D": "Isla Nublar"
+    },
+    "correct_answer": "D",
+    "category": "Cinema"
+  },
+  {
+    "id": 5,
+    "question": "Which actress portrayed the lead role in the 'Hidden Figures', biographical drama about a NASA mathematician?",
+    "options": {
+      "A": "Octavia Spencer",
+      "B": "Janelle Monáe",
+      "C": "Taraji Henson",
+      "D": "Lupita Nyong'o"
+    },
+    "correct_answer": "C",
+    "category": "Cinema"
+  },
+  {
+    "id": 6,
+    "question": "Which French director is known for the distinctive visual style in 'Amélie'?",
+    "options": {
+      "A": "Luc Besson",
+      "B": "Jacques Audiard",
+      "C": "François Truffaut",
+      "D": "Jean-Pierre Jeunet"
+    },
+    "correct_answer": "D",
+    "category": "Cinema"
+  },
+  {
+    "id": 7,
+    "question": "How many members comprise the fellowship in the fantasy trilogy based on Tolkien's work?",
+    "options": {
+      "A": "Seven members",
+      "B": "Eight members",
+      "C": "Nine members",
+      "D": "Ten members"
+    },
+    "correct_answer": "C",
+    "category": "Cinema"
+  },
+  {
+    "id": 8,
+    "question": "Which Indian filmmaker directed the epic historical romance 'Devdas' released in 2002?",
+    "options": {
+      "A": "Karan Johar",
+      "B": "Sanjay Bhansali",
+      "C": "Yash Chopra",
+      "D": "Rajkumar Hirani"
+    },
+    "correct_answer": "B",
+    "category": "Cinema"
+  },
+  {
+    "id": 9,
+    "question": "Which performer became the youngest recipient of the competitive acting recognition at the Academy Award for Best Supporting Actress in 1974?",
+    "options": {
+      "A": "Jodie Foster at age nine",
+      "B": "Tatum O'Neal at age ten",
+      "C": "Anna Paquin at age eleven",
+      "D": "Patty Duke at age sixteen"
+    },
+    "correct_answer": "B",
+    "category": "Cinema"
+  },
+  {
+    "id": 10,
+    "question": "What was the original title given to the space opera saga before its theatrical release in 1977?",
+    "options": {
+      "A": "Adventures of Luke Starkiller",
+      "B": "Journey to Tatooine",
+      "C": "The Star Wars",
+      "D": "Galaxy at War"
+    },
+    "correct_answer": "A",
+    "category": "Cinema"
+  },
+  {
+    "id": 11,
+    "question": "Which British actor declined the role of Gandalf before it was offered to Ian McKellen?",
+    "options": {
+      "A": "Anthony Hopkins",
+      "B": "Sean Connery",
+      "C": "Patrick Stewart",
+      "D": "Michael Caine"
+    },
+    "correct_answer": "B",
+    "category": "Cinema"
+  },
+  {
+    "id": 12,
+    "question": "In which year did the streaming service Apple TV Plus officially launch its platform?",
+    "options": {
+      "A": "2017",
+      "B": "2018",
+      "C": "2019",
+      "D": "2020"
+    },
+    "correct_answer": "C",
+    "category": "Cinema"
+  },
+  {
+    "id": 13,
+    "question": "Which Italian director created the controversial masterpiece examining fascism through elaborate visual metaphors in 1975?",
+    "options": {
+      "A": "Bernardo Bertolucci",
+      "B": "Federico Fellini",
+      "C": "Pier Paolo Pasolini",
+      "D": "Luchino Visconti"
+    },
+    "correct_answer": "C",
+    "category": "Cinema"
+  },
+  {
+    "id": 14,
+    "question": "What was the approximate production budget allocated for the 1997 disaster romance that became the highest-grossing release of its time?",
+    "options": {
+      "A": "One hundred fifty million dollars",
+      "B": "Two hundred million dollars",
+      "C": "Two hundred fifty million dollars",
+      "D": "Three hundred million dollars"
+    },
+    "correct_answer": "B",
+    "category": "Cinema"
+  },
+  {
+    "id": 15,
+    "question": "Which studio distributed the psychological thriller that introduced audiences to Hannibal Lecter in 1991?",
+    "options": {
+      "A": "Universal Pictures",
+      "B": "Paramount Pictures",
+      "C": "TriStar Pictures",
+      "D": "Orion Pictures"
+    },
+    "correct_answer": "D",
+    "category": "Cinema"
+  },
+  {
+    "id": 16,
+    "question": "Who composed the distinctive musical score for the supernatural comedy franchise beginning in 1984?",
+    "options": {
+      "A": "Elmer Bernstein",
+      "B": "Danny Elfman",
+      "C": "Alan Silvestri",
+      "D": "John Williams"
+    },
+    "correct_answer": "A",
+    "category": "Cinema"
+  },
+  {
+    "id": 17,
+    "question": "Which cinematographer pioneered the use of natural lighting techniques in Terrence Malick's 1978 harvest drama?",
+    "options": {
+      "A": "Vilmos Zsigmond",
+      "B": "Gordon Willis",
+      "C": "Nestor Almendros",
+      "D": "Vittorio Storaro"
+    },
+    "correct_answer": "C",
+    "category": "Cinema"
+  },
+  {
+    "id": 18,
+    "question": "What was the name of the newly founded distribution company founded by Steven Spielberg, Jeffrey Katzenberg, and David Geffen in 1994?",
+    "options": {
+      "A": "DreamWorks SKG",
+      "B": "Miramax Dimension Films",
+      "C": "New Line Platinum Studios",
+      "D": "Amblin Entertainment Partners"
+    },
+    "correct_answer": "A",
+    "category": "Cinema"
+  },
+  {
+    "id": 19,
+    "question": "Which performer received recognition for portraying eight distinct characters in a single 1949 British comedy production?",
+    "options": {
+      "A": "Peter Sellers",
+      "B": "Alec Guinness",
+      "C": "Terry-Thomas",
+      "D": "Stanley Holloway"
+    },
+    "correct_answer": "B",
+    "category": "Cinema"
+  },
+  {
+    "id": 20,
+   "question": "Which of the following was a one-person research submersible designed by engineer Graham Hawkes and later associated with James Cameron’s deep-sea exploration projects?",
+  "options": {
+    "A": "Deep Rover submersible camera",
+    "B": "SeaView hydraulic housing unit",
+    "C": "Aqua-Cam pressure-resistant rig",
+    "D": "SubCam remote-operated vehicle"
+
+    "correct_answer": "A",
+    "category": "Cinema"
+  },
+  {
+    "id": 21,
+    "question": "Which Japanese filmmaker's estate initially resisted authorization for digital restoration of his works until 2009, citing artistic integrity concerns?",
+    "options": {
+      "A": "Yasujiro Ozu",
+      "B": "Kenji Mizoguchi",
+      "C": "Mikio Naruse",
+      "D": "Masaki Kobayashi"
+    },
+    "correct_answer": "A",
+    "category": "Cinema"
+  },
+  {
+    "id": 22,
+    "question": "What was the codename used internally at Lucasfilm for the production of the 1983 continuation of the space saga?",
+    "options": {
+      "A": "Black Thunder",
+      "B": "Red Dawn",
+      "C": "Green Storm",
+      "D": "Blue Harvest"
+    },
+    "correct_answer": "D",
+    "category": "Cinema"
+  },
+  {
+    "id": 23,
+    "question": "Which German silent expressionist masterpiece employed forced perspective sets to create distorted architectural environments in 1920?",
+    "options": {
+      "A": "Nosferatu: A Symphony of Horror",
+      "B": "The Cabinet of Dr. Caligari",
+      "C": "Metropolis",
+      "D": "The Golem: How He Came into the World"
+    },
+    "correct_answer": "B",
+    "category": "Cinema"
+  },
+  {
+    "id": 24,
+    "question": "What experimental editing technique did Soviet filmmaker Lev Kuleshov demonstrate through his famous effect using identical shots of an actor's face?",
+    "options": {
+      "A": "Intellectual montage creates meaning through contextual juxtaposition",
+      "B": "Metric montage establishes rhythm through calculated cutting patterns",
+      "C": "Tonal montage generates emotion through atmospheric composition selection",
+      "D": "Overtonal montage synthesizes sensory elements through layered sequences"
+    },
+    "correct_answer": "A",
+    "category": "Cinema"
+  }
+];
+
+                const form = document.getElementById("quizForm");
+                
+                questions.forEach((q, index) => {
+                    console.log("Processing Question:", q.id);
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionText = document.createElement("p");
+                    questionText.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+                    questionDiv.appendChild(questionText);
+
+                    Object.entries(q.options).forEach(([key, value]) => {
+                        const input = document.createElement("input");
+                        input.type = "radio";
+                        input.name = `q${q.id}`;
+                        input.value = key;
+
+                        const label = document.createElement("label");
+                        label.innerHTML = ` ${key}) ${value}<br>`;
+
+                        questionDiv.appendChild(input);
+                        questionDiv.appendChild(label);
+                    });
+
+                    form.appendChild(questionDiv);
+                });
+
+                document.getElementById("submitBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    let score = 0;
+                    let total = questions.length;
+                    let resultText = "<h3>Results:</h3>";
+
+                    questions.forEach(q => {
+                        let selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected) {
+                            if (selected.value === q.correct_answer) {
+                                score++;
+                                resultText += `<p>Question ${q.id}: Correct ✅</p>`;
+                            } else {
+                                resultText += `<p>Question ${q.id}: Incorrect ❌ (Correct: ${q.correct_answer})</p>`;
+                            }
+                        } else {
+                            resultText += `<p>Question ${q.id}: No answer selected ❌ (Correct: ${q.correct_answer})</p>`;
+                        }
+                    });
+
+                    resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
+                    document.getElementById("result").innerHTML = resultText;
+                    
+                    const scoreDisplay = document.getElementById("scoreDisplay");
+                    scoreDisplay.style.display = "block";
+                    document.getElementById("scoreValue").textContent = score;
+                    document.getElementById("totalQuestions").textContent = total;
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    const progressBar = document.getElementById("progressBar");
+                    progressBar.style.width = `${percentage}%`;
+                    progressBar.textContent = `${percentage}%`;
+                    
+                    if (score < 12) {
+                        progressBar.style.backgroundColor = "#dc3545"; // Red
+                    } else if (score < 20) {
+                        progressBar.style.backgroundColor = "#ffc107"; // Yellow
+                    } else {
+                        progressBar.style.backgroundColor = "#28a745"; // Green
+                    }
+                    
+                    // Create a unique key for this test
+                    const testKey = `cinema-general-2`;
+                    
+                    // Save the score
+                    localStorage.setItem(testKey, score);
+                });
+    </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <p>© Copyright 2026</p>
+        <p><a href="mailto:info@superquiz.online" class="footer-email">info@superquiz.online</a></p>
+        <p>All rights reserved</p>        
+        <p class="footer-made">Made by MB</p>
+    </div>
+    </footer>
+</body>
+</html>
