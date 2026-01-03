@@ -234,7 +234,296 @@
     <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
     <div id="result" class="result"></div>
     <script>
-        const questions = ;
+        const questions = [
+  {
+    "id": 1,
+    "question": "Which family of musical instruments produces sound by the vibration of air across a mouthpiece or through a reed?",
+    "options": {
+      "A": "Percussion instruments",
+      "B": "String instruments",
+      "C": "Woodwind instruments",
+      "D": "Electronic instruments"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 2,
+    "question": "In the standard tuning of a six-string guitar, what is the pitch of the highest sounding open string?",
+    "options": {
+      "A": "High E",
+      "B": "Low E",
+      "C": "High B",
+      "D": "Low G"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 3,
+    "question": "Which iconic British rock band is famous for the hit song 'Bohemian Rhapsody'?",
+    "options": {
+      "A": "Pink Floyd",
+      "B": "Queen",
+      "C": "Led Zeppelin",
+      "D": "The Rolling Stones"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 4,
+    "question": "Which country is internationally recognized as the birthplace of the Samba musical genre and dance style?",
+    "options": {
+      "A": "Argentina",
+      "B": "Colombia",
+      "C": "Mexico",
+      "D": "Brazil"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 5,
+    "question": "In standard musical notation, how many horizontal lines make up a single staff upon which notes are placed?",
+    "options": {
+      "A": "Four lines",
+      "B": "Five lines",
+      "C": "Six lines",
+      "D": "Seven lines"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 6,
+    "question": "Which American pop star released the 1984 album 'Like a Virgin' and is often referred to as the 'Queen of Pop'?",
+    "options": {
+      "A": "Cyndi Lauper",
+      "B": "Madonna Ciccone",
+      "C": "Whitney Houston",
+      "D": "Janet Jackson"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 7,
+    "question": "Which term describes the lowest standard vocal range for an adult male singer in a choir?",
+    "options": {
+      "A": "Bass",
+      "B": "Tenor",
+      "C": "Alto",
+      "D": "Soprano"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 8,
+    "question": "Which piano key is located immediately to the left of the group of two black keys?",
+    "options": {
+      "A": "F Natural",
+      "B": "A Natural",
+      "C": "C Natural",
+      "D": "E Natural"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 9,
+    "question": "Which influential album by The Beach Boys is often cited as one of the first true 'concept albums' in rock history?",
+    "options": {
+      "A": "Beach Boys' Party!",
+      "B": "Smiley Smile",
+      "C": "Wild Honey",
+      "D": "Pet Sounds"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 10,
+    "question": "Who is the Austrian Classical composer often referred to as the 'Father of the Symphony' and 'Father of the String Quartet'?",
+    "options": {
+      "A": "Wolfgang Amadeus Mozart",
+      "B": "Ludwig van Beethoven",
+      "C": "Franz Schubert",
+      "D": "Joseph Haydn"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 11,
+    "question": "The Roland TB-303 bass synthesizer, originally a commercial failure, became the foundational instrument for which electronic genre?",
+    "options": {
+      "A": "Acid House",
+      "B": "Synth Pop",
+      "C": "Drum and Bass",
+      "D": "Dubstep"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 12,
+    "question": "Which American rock icon is nicknamed 'The Boss' and is backed by the E Street Band?",
+    "options": {
+      "A": "Tom Petty",
+      "B": "Bob Dylan",
+      "C": "Bruce Springsteen",
+      "D": "John Mellencamp"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 13,
+    "question": "The famous piano piece 'Clair de lune' is the third movement of the 'Suite bergamasque' by which French Impressionist composer?",
+    "options": {
+      "A": "Maurice Ravel",
+      "B": "Erik Satie",
+      "C": "Gabriel Fauré",
+      "D": "Claude Debussy"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 14,
+    "question": "In 1997, which British band released the critically acclaimed album 'OK Computer', marking a shift toward experimental rock?",
+    "options": {
+      "A": "Oasis",
+      "B": "Radiohead",
+      "C": "Blur",
+      "D": "The Verve"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 15,
+    "question": "The 'Motown' record label, famous for its soul and R&B hits in the 1960s, was founded in which U.S. city?",
+    "options": {
+      "A": "Detroit",
+      "B": "Chicago",
+      "C": "Memphis",
+      "D": "New York"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 16,
+    "question": "Who was the first winner of the reality television competition 'American Idol' during its inaugural season in 2002?",
+    "options": {
+      "A": "Carrie Underwood",
+      "B": "Jennifer Hudson",
+      "C": "Kelly Clarkson",
+      "D": "Adam Lambert"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 17,
+    "question": "Which Polish composer wrote the avant-garde piece 'Threnody to the Victims of Hiroshima', scored for 52 string instruments?",
+    "options": {
+      "A": "Henryk Górecki",
+      "B": "Krzysztof Penderecki",
+      "C": "Witold Lutosławski",
+      "D": "Karol Szymanowski"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 18,
+    "question": "The 'Rocket' motif is a rapidly ascending musical figure famously associated with the orchestra of which 18th-century court?",
+    "options": {
+      "A": "The Court of Vienna",
+      "B": "The Court of Berlin",
+      "C": "The Court of Paris",
+      "D": "The Court of Mannheim"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 19,
+    "question": "Which specific instrument performs the iconic glissando opening of George Gershwin's 1924 composition 'Rhapsody in Blue'?",
+    "options": {
+      "A": "The Clarinet",
+      "B": "The Saxophone",
+      "C": "The Trombone",
+      "D": "The Violin"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 20,
+    "question": "On which exact date did the plane crash occur that killed Buddy Holly, Ritchie Valens, and The Big Bopper, known as 'The Day the Music Died'?",
+    "options": {
+      "A": "March 21, 1957",
+      "B": "January 15, 1958",
+      "C": "February 3, 1959",
+      "D": "April 12, 1960"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 21,
+    "question": "Who was the very first woman to be inducted into the Rock and Roll Hall of Fame, achieving this honor in 1987?",
+    "options": {
+      "A": "Diana Ross",
+      "B": "Aretha Franklin",
+      "C": "Tina Turner",
+      "D": "Janis Joplin"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 22,
+    "question": "Which German inventor famously patented the metronome in 1815, controversially appropriating the design from Dietrich Nikolaus Winkel?",
+    "options": {
+      "A": "Theobald Boehm",
+      "B": "Adolphe Sax",
+      "C": "Johann M. Petzval",
+      "D": "Johann N. Maelzel"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 23,
+    "question": "Which minimalist composer wrote the five-hour opera 'Einstein on the Beach', which famously lacks a traditional libretto or plot?",
+    "options": {
+      "A": "Philip Glass",
+      "B": "Steve Reich",
+      "C": "John Adams",
+      "D": "Terry Riley"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 24,
+    "question": "The 'Amen Break', a six-second drum solo that became the most sampled loop in history, originated from a 1969 B-side track by which group?",
+    "options": {
+      "A": "The Meters",
+      "B": "The Winstons",
+      "C": "The Funk Brothers",
+      "D": "The J.B.'s"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  }
+];
 
                 const form = document.getElementById("quizForm");
                 
