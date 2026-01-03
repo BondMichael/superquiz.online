@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	  <title>Cinema Quiz | General 1 | superquiz.online</title>
+	  <meta name="description" content="Free Cinema quiz online, no sign-up, instant results.">
+	  <meta name="keywords" content="Free Cinema quiz online, Actors quiz, Movies quiz, Franchises quiz, Series quiz">
+    <meta name="author" content="superquiz.online">
+  	<meta name="robots" content="index, follow">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91YPWNDHXE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-91YPWNDHXE');
+</script>
+    <style>
+		html, body {
+          height: 100%;
+          /* margin: 0; */
+        }
+		
+        body {
+            font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+            margin: 40px auto;
+            max-width: 600px;
+            align-items: center;
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			width: 90%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            /* left: 0;
+            right: 0; */
+            z-index: 100;
+            max-width: 600px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .passage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #e3f2fd;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+        
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-button {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            fill: #23236E;
+            transition: fill 0.3s;
+        }
+
+        .home-button:hover .home-icon {
+            fill: #2980b9;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+        color: #000000;
+        text-align: bottom;
+        padding: 5px;
+        margin-top: 50px;
+        width: 100%;
+        flex-shrink: 0;
+        font-size: small;
+        line-height: 12px;
+        position: relative;
+        bottom: 0px;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        
+        .footer-email {
+            color: #23236E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-email:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .footer-spacer {
+            height: 30px;
+            width: 100%;
+        }
+        
+        .footer-made {
+            margin-top: 10px;
+        }
+        
+        .footer-maker {
+            font-size: 1.3em;
+        }
+
+        .score-display {
+			width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            height: 24px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="javascript:history.back()" class="home-button">
+            <svg width="25.6" height="22.4" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.292893 7.29289C-0.097631 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292893 7.29289ZM18 7L1 7L1 9L18 9L18 7Z" fill="#23236E"/>
+            </svg>
+        </a>
+        <h2>General Cinema 1</h2>
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="passageContainer"></div> <form id="quizForm"></form>
+    
+    <div class="score-display" id="scoreDisplay" style="display: none;">
+        <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+    <div id="result" class="result"></div>
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "question": "Which Hollywood actor is famously known for performing his own high-risk stunts, including hanging off the side of an Airbus A400M plane?",
+    "options": {
+      "A": "Brad Pitt",
+      "B": "Vin Diesel",
+      "C": "Keanu Reeves",
+      "D": "Tom Cruise"
+    },
+    "correct_answer": "D",
+    "category": "Celebrity Trivia"
+  },
+  {
+    "id": 2,
+    "question": "In the 2023 blockbuster 'Barbie', which actor plays the primary version of Ken who loves 'beach'?",
+    "options": {
+      "A": "Simu Liu",
+      "B": "Chris Evans",
+      "C": "Ryan Gosling",
+      "D": "Michael Cera"
+    },
+    "correct_answer": "C",
+    "category": "Modern Cinema"
+  },
+  {
+    "id": 3,
+    "question": "Which fictional country is the setting for the Marvel Cinematic Universe film 'Avengers: Age of Ultron'?",
+    "options": {
+      "A": "Genosha",
+      "B": "Wakanda",
+      "C": "Latveria",
+      "D": "Sokovia"
+    },
+    "correct_answer": "D",
+    "category": "Film Franchises"
+  },
+  {
+    "id": 4,
+    "question": "What specific object does the character 'Forrest Gump' compare life to in his famous movie quote?",
+    "options": {
+      "A": "A bag of marbles",
+      "B": "A box of chocolates",
+      "C": "A jar of jellybeans",
+      "D": "A puzzle with missing pieces"
+    },
+    "correct_answer": "B",
+    "category": "Movie Quotes"
+  },
+  {
+    "id": 5,
+    "question": "Which pop star made her feature film directorial debut with the short film 'All Too Well' in 2021?",
+    "options": {
+      "A": "Lady Gaga",
+      "B": "Beyoncé",
+      "C": "Taylor Swift",
+      "D": "Adele"
+    },
+    "correct_answer": "C",
+    "category": "Music in Film"
+  },
+  {
+    "id": 6,
+    "question": "The Minions’ fictional language, 'Minionese', is primarily a mix of English, French, Spanish, and Italian, but is also *sometimes anecdotally cited* as incorporating which additional language?",
+    "options": {
+      "A": "Filipino",
+      "B": "Hindi",
+      "C": "German",
+      "D": "Russian"
+    },
+    "correct_answer": "A",
+    "category": "Animation"
+  },
+  {
+    "id": 7,
+    "question": "Which actor's mustache was controversially removed via CGI for the film 'Justice League' because he was contractually obligated to keep it for 'Mission: Impossible'?",
+    "options": {
+      "A": "Ben Affleck",
+      "B": "Jason Momoa",
+      "C": "Henry Cavill",
+      "D": "Ezra Miller"
+    },
+    "correct_answer": "C",
+    "category": "Production Trivia"
+  },
+  {
+    "id": 8,
+    "question": "Which actor portrayed the Joker in 'The Dark Knight' and also appeared in 'The Imaginarium of Doctor Parnassus'?",
+    "options": {
+      "A": "Joaquin Phoenix",
+      "B": "Heath Ledger",
+      "C": "Jared Leto",
+      "D": "Jack Nicholson"
+    },
+    "correct_answer": "B",
+    "category": "Actors"
+  },
+  {
+    "id": 9,
+    "question": "Which prestigious film festival awards the 'Palme d'Or' as its highest prize?",
+    "options": {
+      "A": "Cannes Film Festival",
+      "B": "Sundance Film Festival",
+      "C": "Venice Film Festival",
+      "D": "Berlin International Film Festival"
+    },
+    "correct_answer": "A",
+    "category": "Film Festivals"
+  },
+  {
+    "id": 10,
+    "question": "Before becoming a global star, Harrison Ford worked professionally in Hollywood in which trade?",
+    "options": {
+      "A": "Electrician",
+      "B": "Carpenter",
+      "C": "Stunt Driver",
+      "D": "Caterer"
+    },
+    "correct_answer": "B",
+    "category": "Celebrity Biography"
+  },
+  {
+    "id": 11,
+    "question": "In the 'Harry Potter' film series, the role of Albus Dumbledore was recast in the third film due to the death of which actor?",
+    "options": {
+      "A": "Richard Harris",
+      "B": "Michael Gambon",
+      "C": "Alan Rickman",
+      "D": "John Hurt"
+    },
+    "correct_answer": "A",
+    "category": "Casting History"
+  },
+  {
+    "id": 12,
+    "question": "Which director is known for the 'Cornetto Trilogy', consisting of 'Shaun of the Dead', 'Hot Fuzz', and 'The World's End'?",
+    "options": {
+      "A": "Guy Ritchie",
+      "B": "Edgar Wright",
+      "C": "Danny Boyle",
+      "D": "Matthew Vaughn"
+    },
+    "correct_answer": "B",
+    "category": "Directors"
+  },
+  {
+    "id": 13,
+    "question": "What was the first animated film to be nominated for the Academy Award for Best Picture?",
+    "options": {
+      "A": "Toy Story",
+      "B": "The Lion King",
+      "C": "Spirited Away",
+      "D": "Beauty and the Beast"
+    },
+    "correct_answer": "D",
+    "category": "Oscar History"
+  },
+  {
+    "id": 14,
+    "question": "Which famous composer wrote the iconic two-note shark theme for the movie 'Jaws'?",
+    "options": {
+      "A": "Hans Zimmer",
+      "B": "Ennio Morricone",
+      "C": "John Williams",
+      "D": "Howard Shore"
+    },
+    "correct_answer": "C",
+    "category": "Film Scores"
+  },
+  {
+    "id": 15,
+    "question": "The fictional 'Nakatomi Plaza' in 'Die Hard' is actually the headquarters of which major real-world studio?",
+    "options": {
+      "A": "20th Century Fox",
+      "B": "Universal Pictures",
+      "C": "Warner Bros.",
+      "D": "Sony Pictures"
+    },
+    "correct_answer": "A",
+    "category": "Locations"
+  },
+  {
+    "id": 16,
+    "question": "Which actor famously bought a $276,000 dinosaur skull at auction, outbidding Leonardo DiCaprio, only to return it later because it was stolen?",
+    "options": {
+      "A": "Nicolas Cage",
+      "B": "Johnny Depp",
+      "C": "Robert Downey Jr.",
+      "D": "Charlie Sheen"
+    },
+    "correct_answer": "A",
+    "category": "Celebrity Scandals"
+  },
+  {
+    "id": 17,
+    "question": "For the film 'Psycho', what substance did Alfred Hitchcock use to simulate blood in the shower scene because it showed up better in black and white?",
+    "options": {
+      "A": "Cranberry Juice",
+      "B": "Chocolate Syrup",
+      "C": "Tomato Ketchup",
+      "D": "Red Paint"
+    },
+    "correct_answer": "B",
+    "category": "Classic Cinema"
+  },
+  {
+    "id": 18,
+    "question": "Who is the only actor to win an Academy Award for Best Actor for a film they also directed and starred in, released after 1960?",
+    "options": {
+      "A": "Clint Eastwood",
+      "B": "Woody Allen",
+      "C": "Laurence Olivier",
+      "D": "Roberto Benigni"
+    },
+    "correct_answer": "D",
+    "category": "Academy Awards"
+  },
+  {
+    "id": 19,
+    "question": "The distinct sound of the T-Rex footsteps in 'Jurassic Park' was created by recording what falling to the ground?",
+    "options": {
+      "A": "A hydraulic press",
+      "B": "A sequoia tree",
+      "C": "A pile of boulders",
+      "D": "A pineapple"
+    },
+    "correct_answer": "B",
+    "category": "Sound Design"
+  },
+  {
+    "id": 20,
+    "question": "In the context of Hollywood accounting, what is the term used to describe the obscure clause 'Buchwald v. Paramount' highlighted regarding 'Coming to America'?",
+    "options": {
+      "A": "Net Profit",
+      "B": "Negative Pickup",
+      "C": "First-Dollar Gross",
+      "D": "Gross Participation"
+    },
+    "correct_answer": "A",
+    "category": "Industry Law"
+  },
+  {
+    "id": 21,
+    "question": "Which film was the first to ever receive a PG-13 rating, a rating created specifically because of its content?",
+    "options": {
+      "A": "Gremlins",
+      "B": "Indiana Jones and the Temple of Doom",
+      "C": "Red Dawn",
+      "D": "Poltergeist"
+    },
+    "correct_answer": "C",
+    "category": "Film History"
+  },
+  {
+    "id": 22,
+    "question": "The 'Wilhelm Scream', a stock sound effect used in over 400 films, originated from which 1951 movie?",
+    "options": {
+      "A": "The Charge at Feather River",
+      "B": "Distant Drums",
+      "C": "High Noon",
+      "D": "The Day the Earth Stood Still"
+    },
+    "correct_answer": "B",
+    "category": "Cinema Lore"
+  },
+  {
+    "id": 23,
+    "question": "Which legendary director holds the record for the most takes for a single scene with dialogue (148 takes)?",
+    "options": {
+      "A": "David Fincher",
+      "B": "Terrence Malick",
+      "C": "Alfred Hitchcock",
+      "D": "Stanley Kubrick"
+    },
+    "correct_answer": "D",
+    "category": "Directing Records"
+  },
+  {
+    "id": 24,
+    "question": "Which of these films is the only X-rated movie in history to win the Academy Award for Best Picture?",
+    "options": {
+      "A": "A Clockwork Orange",
+      "B": "Last Tango in Paris",
+      "C": "Midnight Cowboy",
+      "D": "Caligula"
+    },
+    "correct_answer": "C",
+    "category": "Oscar Records"
+  }
+];
+
+                const form = document.getElementById("quizForm");
+                
+                questions.forEach((q, index) => {
+                    console.log("Processing Question:", q.id);
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionText = document.createElement("p");
+                    questionText.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+                    questionDiv.appendChild(questionText);
+
+                    Object.entries(q.options).forEach(([key, value]) => {
+                        const input = document.createElement("input");
+                        input.type = "radio";
+                        input.name = `q${q.id}`;
+                        input.value = key;
+
+                        const label = document.createElement("label");
+                        label.innerHTML = ` ${key}) ${value}<br>`;
+
+                        questionDiv.appendChild(input);
+                        questionDiv.appendChild(label);
+                    });
+
+                    form.appendChild(questionDiv);
+                });
+
+                document.getElementById("submitBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    let score = 0;
+                    let total = questions.length;
+                    let resultText = "<h3>Results:</h3>";
+
+                    questions.forEach(q => {
+                        let selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected) {
+                            if (selected.value === q.correct_answer) {
+                                score++;
+                                resultText += `<p>Question ${q.id}: Correct ✅</p>`;
+                            } else {
+                                resultText += `<p>Question ${q.id}: Incorrect ❌ (Correct: ${q.correct_answer})</p>`;
+                            }
+                        } else {
+                            resultText += `<p>Question ${q.id}: No answer selected ❌ (Correct: ${q.correct_answer})</p>`;
+                        }
+                    });
+
+                    resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
+                    document.getElementById("result").innerHTML = resultText;
+                    
+                    const scoreDisplay = document.getElementById("scoreDisplay");
+                    scoreDisplay.style.display = "block";
+                    document.getElementById("scoreValue").textContent = score;
+                    document.getElementById("totalQuestions").textContent = total;
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    const progressBar = document.getElementById("progressBar");
+                    progressBar.style.width = `${percentage}%`;
+                    progressBar.textContent = `${percentage}%`;
+                    
+                    if (score < 12) {
+                        progressBar.style.backgroundColor = "#dc3545"; // Red
+                    } else if (score < 20) {
+                        progressBar.style.backgroundColor = "#ffc107"; // Yellow
+                    } else {
+                        progressBar.style.backgroundColor = "#28a745"; // Green
+                    }
+                    
+                    // Create a unique key for this test
+                    const testKey = `cinema-general-1`;
+                    
+                    // Save the score
+                    localStorage.setItem(testKey, score);
+                });
+    </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <p>© Copyright 2026</p>
+        <p><a href="mailto:info@superquiz.online" class="footer-email">info@superquiz.online</a></p>
+        <p>All rights reserved</p>        
+        <p class="footer-made">Made by MB</p>
+    </div>
+    </footer>
+</body>
+</html>
