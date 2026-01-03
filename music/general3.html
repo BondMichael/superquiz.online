@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	  <title>Music Quiz | General 3 | superquiz.online</title>
+	  <meta name="description" content="Free Music quiz online, no sign-up, instant results.">
+	  <meta name="keywords" content="Free Music quiz online, Singers quiz, Bands quiz, Albums quiz, Instruments quiz">
+    <meta name="author" content="superquiz.online">
+  	<meta name="robots" content="index, follow">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91YPWNDHXE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-91YPWNDHXE');
+</script>
+    <style>
+		html, body {
+          height: 100%;
+          /* margin: 0; */
+        }
+		
+        body {
+            font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+            margin: 40px auto;
+            max-width: 600px;
+            align-items: center;
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			width: 90%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            /* left: 0;
+            right: 0; */
+            z-index: 100;
+            max-width: 600px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .passage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #e3f2fd;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+        
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-button {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            fill: #23236E;
+            transition: fill 0.3s;
+        }
+
+        .home-button:hover .home-icon {
+            fill: #2980b9;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+        color: #000000;
+        text-align: bottom;
+        padding: 5px;
+        margin-top: 50px;
+        width: 100%;
+        flex-shrink: 0;
+        font-size: small;
+        line-height: 12px;
+        position: relative;
+        bottom: 0px;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        
+        .footer-email {
+            color: #23236E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-email:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .footer-spacer {
+            height: 30px;
+            width: 100%;
+        }
+        
+        .footer-made {
+            margin-top: 10px;
+        }
+        
+        .footer-maker {
+            font-size: 1.3em;
+        }
+
+        .score-display {
+			width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            height: 24px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="javascript:history.back()" class="home-button">
+            <svg width="25.6" height="22.4" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.292893 7.29289C-0.097631 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292893 7.29289ZM18 7L1 7L1 9L18 9L18 7Z" fill="#23236E"/>
+            </svg>
+        </a>
+        <h2>General Music 3</h2>
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="passageContainer"></div> <form id="quizForm"></form>
+    
+    <div class="score-display" id="scoreDisplay" style="display: none;">
+        <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+    <div id="result" class="result"></div>
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "question": "Which string instrument is slightly larger than a violin and is tuned a perfect fifth lower?",
+    "options": {
+      "A": "The Cello",
+      "B": "The Viola",
+      "C": "The Bass",
+      "D": "The Harp"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 2,
+    "question": "In a standard four-piece rock band, which role was famously performed by John Bonham in Led Zeppelin?",
+    "options": {
+      "A": "Lead Guitarist",
+      "B": "Lead Vocalist",
+      "C": "Bass Player",
+      "D": "Drummer"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 3,
+    "question": "Which musical term refers to how high or low a sound is, determined by the frequency of its sound wave vibrations?",
+    "options": {
+      "A": "Tempo",
+      "B": "Timbre",
+      "C": "Pitch",
+      "D": "Scale"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 4,
+    "question": "Which iconic music festival took place in 1969 on a dairy farm in Bethel, New York?",
+    "options": {
+      "A": "Coachella",
+      "B": "Woodstock",
+      "C": "Glastonbury",
+      "D": "Lollapalooza"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 5,
+    "question": "The 'King of Pop' was a moniker widely associated with which entertainer?",
+    "options": {
+      "A": "Whitney Houston",
+      "B": "Elvis Presley",
+      "C": "Michael Jackson",
+      "D": "George Michael"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 6,
+    "question": "What is the primary function of the black keys on a standard piano keyboard?",
+    "options": {
+      "A": "They play natural notes",
+      "B": "They play flats and sharps",
+      "C": "They adjust the volume and deepness",
+      "D": "They mute the strings when needed"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 7,
+    "question": "Which chart-topping female artist released the albums '19', '21', and '25', named after her age at the time of production?",
+    "options": {
+      "A": "Adele",
+      "B": "Beyoncé",
+      "C": "Rihanna",
+      "D": "Taylor Swift"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 8,
+    "question": "In jazz music, what is the term for composing music spontaneously while performing?",
+    "options": {
+      "A": "Orchestration",
+      "B": "Syncopation",
+      "C": "Harmonization",
+      "D": "Improvisation"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 9,
+    "question": "Which interval represents the distance between two musical notes that have the same letter name but one is double the frequency of the other?",
+    "options": {
+      "A": "Octave",
+      "B": "Fifth",
+      "C": "Third",
+      "D": "Unison"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 10,
+    "question": "Which city is famously known as the birthplace of the grunge music movement in the early 1990s?",
+    "options": {
+      "A": "Portland",
+      "B": "Seattle",
+      "C": "Chicago",
+      "D": "Austin"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 11,
+    "question": "Who was the only female member of the Fugees before launching a highly successful solo career with the album 'The Miseducation'?",
+    "options": {
+      "A": "Lauryn Hill",
+      "B": "Erykah Badu",
+      "C": "Mary J. Blige",
+      "D": "Alicia Keys"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 12,
+    "question": "Which classical composer continued to write masterpieces such as the Ninth Symphony despite becoming almost completely deaf?",
+    "options": {
+      "A": "Wolfgang Amadeus Mozart",
+      "B": "Ludwig van Beethoven",
+      "C": "Johann Sebastian Bach",
+      "D": "Franz Schubert"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 13,
+    "question": "The 'Wall of Sound' production technique, characterized by dense layering of instruments, was developed by which producer?",
+    "options": {
+      "A": "George Martin",
+      "B": "Brian Wilson",
+      "C": "Phil Spector",
+      "D": "Rick Rubin"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 14,
+    "question": "Which Motown group, featuring Diana Ross, achieved twelve number-one singles on the Billboard Hot 100?",
+    "options": {
+      "A": "The Vandellas",
+      "B": "The Ronettes",
+      "C": "The Marvelettes",
+      "D": "The Supremes"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 15,
+    "question": "In 1985, the charity single 'We Are the World' was recorded by a supergroup known as what?",
+    "options": {
+      "A": "Band Aid",
+      "B": "USA for Africa",
+      "C": "Artists United for Africa",
+      "D": "Artists United Against Apartheid"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 16,
+    "question": "Which musical instrument, usually made of metal with a curved conical tube and played using a single-reed mouthpiece, is played by blowing?",
+    "options": {
+      "A": "The Trombone",
+      "B": "The Trumpet",
+      "C": "The Clarinet",
+      "D": "The Saxophone"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 17,
+    "question": "Which opera by Richard Wagner opens with a groundbreaking dissonant chord that helped initiate the move away from traditional tonal harmony?",
+    "options": {
+      "A": "Tristan und Isolde",
+      "B": "Der Ring des Nibelungen",
+      "C": "Die Meistersinger",
+      "D": "Parsifal"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 18,
+    "question": "Which specific electronic drum machine, released by Roland in 1980, is credited with defining the sound of modern hip-hop and techno music?",
+    "options": {
+      "A": "The LM-1",
+      "B": "The MPC-60",
+      "C": "The SP-1200",
+      "D": "The TR-808"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 19,
+    "question": "The first commercial compact disc (CD) pressed in the United States was a 1984 release of which famous rock album?",
+    "options": {
+      "A": "Born in the U.S.A.",
+      "B": "When Doves Cry",
+      "C": "Dancing in the Dark",
+      "D": "The Reflex"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 20,
+    "question": "Which classical composition is infamously known for causing a riot at its 1913 premiere in Paris due to its avant-garde rhythm and choreography?",
+    "options": {
+      "A": "Boléro",
+      "B": "The Firebird",
+      "C": "The Rite of Spring",
+      "D": "Pierrot Lunaire"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 21,
+    "question": "What is the technical term for the vocal technique used in Alpine folk music that involves rapid alternation between the low-pitch chest register and high-pitch head register?",
+    "options": {
+      "A": "Belting",
+      "B": "Yodeling",
+      "C": "Scatting",
+      "D": "Growling"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 22,
+    "question": "Who was the conductor responsible for the first complete studio recording of Wagner's 'Ring Cycle' with the Vienna Philharmonic, a project that took seven years to complete?",
+    "options": {
+      "A": "Georg Solti",
+      "B": "Herbert von Karajan",
+      "C": "Wilhelm Furtwängler",
+      "D": "Arturo Toscanini"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 23,
+    "question": "In the Hornbostel-Sachs classification system, instruments that produce sound primarily by the vibration of the instrument body itself (like xylophones or bells) are known as what?",
+    "options": {
+      "A": "Aerophones",
+      "B": "Membranophones",
+      "C": "Idiophones",
+      "D": "Chordophones"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 24,
+    "question": "Which influential blues musician famously sold his soul at the crossroads in exchange for mastery of the guitar, according to 20th-century folklore?",
+    "options": {
+      "A": "Robert Johnson",
+      "B": "Muddy Waters",
+      "C": "B.B. King",
+      "D": "Son House"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  }
+];
+
+                const form = document.getElementById("quizForm");
+                
+                questions.forEach((q, index) => {
+                    console.log("Processing Question:", q.id);
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionText = document.createElement("p");
+                    questionText.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+                    questionDiv.appendChild(questionText);
+
+                    Object.entries(q.options).forEach(([key, value]) => {
+                        const input = document.createElement("input");
+                        input.type = "radio";
+                        input.name = `q${q.id}`;
+                        input.value = key;
+
+                        const label = document.createElement("label");
+                        label.innerHTML = ` ${key}) ${value}<br>`;
+
+                        questionDiv.appendChild(input);
+                        questionDiv.appendChild(label);
+                    });
+
+                    form.appendChild(questionDiv);
+                });
+
+                document.getElementById("submitBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    let score = 0;
+                    let total = questions.length;
+                    let resultText = "<h3>Results:</h3>";
+
+                    questions.forEach(q => {
+                        let selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected) {
+                            if (selected.value === q.correct_answer) {
+                                score++;
+                                resultText += `<p>Question ${q.id}: Correct ✅</p>`;
+                            } else {
+                                resultText += `<p>Question ${q.id}: Incorrect ❌ (Correct: ${q.correct_answer})</p>`;
+                            }
+                        } else {
+                            resultText += `<p>Question ${q.id}: No answer selected ❌ (Correct: ${q.correct_answer})</p>`;
+                        }
+                    });
+
+                    resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
+                    document.getElementById("result").innerHTML = resultText;
+                    
+                    const scoreDisplay = document.getElementById("scoreDisplay");
+                    scoreDisplay.style.display = "block";
+                    document.getElementById("scoreValue").textContent = score;
+                    document.getElementById("totalQuestions").textContent = total;
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    const progressBar = document.getElementById("progressBar");
+                    progressBar.style.width = `${percentage}%`;
+                    progressBar.textContent = `${percentage}%`;
+                    
+                    if (score < 12) {
+                        progressBar.style.backgroundColor = "#dc3545"; // Red
+                    } else if (score < 20) {
+                        progressBar.style.backgroundColor = "#ffc107"; // Yellow
+                    } else {
+                        progressBar.style.backgroundColor = "#28a745"; // Green
+                    }
+                    
+                    // Create a unique key for this test
+                    const testKey = `music-general-3`;
+                    
+                    // Save the score
+                    localStorage.setItem(testKey, score);
+                });
+    </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <p>© Copyright 2026</p>
+        <p><a href="mailto:info@superquiz.online" class="footer-email">info@superquiz.online</a></p>
+        <p>All rights reserved</p>        
+        <p class="footer-made">Made by MB</p>
+    </div>
+    </footer>
+</body>
+</html>
