@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	  <title>Music Quiz | General 7 | superquiz.online</title>
+	  <meta name="description" content="Free Music quiz online, no sign-up, instant results.">
+	  <meta name="keywords" content="Free Music quiz online, Singers quiz, Bands quiz, Albums quiz, Instruments quiz">
+    <meta name="author" content="superquiz.online">
+  	<meta name="robots" content="index, follow">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91YPWNDHXE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-91YPWNDHXE');
+</script>
+    <style>
+		html, body {
+          height: 100%;
+          /* margin: 0; */
+        }
+		
+        body {
+            font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+            margin: 40px auto;
+            max-width: 600px;
+            align-items: center;
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			width: 90%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            /* left: 0;
+            right: 0; */
+            z-index: 100;
+            max-width: 600px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .passage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #e3f2fd;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+        
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-button {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            fill: #23236E;
+            transition: fill 0.3s;
+        }
+
+        .home-button:hover .home-icon {
+            fill: #2980b9;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+        color: #000000;
+        text-align: bottom;
+        padding: 5px;
+        margin-top: 50px;
+        width: 100%;
+        flex-shrink: 0;
+        font-size: small;
+        line-height: 12px;
+        position: relative;
+        bottom: 0px;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        
+        .footer-email {
+            color: #23236E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-email:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .footer-spacer {
+            height: 30px;
+            width: 100%;
+        }
+        
+        .footer-made {
+            margin-top: 10px;
+        }
+        
+        .footer-maker {
+            font-size: 1.3em;
+        }
+
+        .score-display {
+			width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            height: 24px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="javascript:history.back()" class="home-button">
+            <svg width="25.6" height="22.4" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.292893 7.29289C-0.097631 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292893 7.29289ZM18 7L1 7L1 9L18 9L18 7Z" fill="#23236E"/>
+            </svg>
+        </a>
+        <h2>General Music 7</h2>
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="passageContainer"></div> <form id="quizForm"></form>
+    
+    <div class="score-display" id="scoreDisplay" style="display: none;">
+        <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+    <div id="result" class="result"></div>
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "question": "Which musical element refers to the variations in loudness or softness (volume) of a musical piece?",
+    "options": {
+      "A": "Pitch",
+      "B": "Timbre",
+      "C": "Duration",
+      "D": "Dynamics"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 2,
+    "question": "What is the name for a group of notes played together simultaneously?",
+    "options": {
+      "A": "Chord",
+      "B": "Scale",
+      "C": "Arpeggio",
+      "D": "Interval"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 3,
+    "question": "Which genre originated in New Orleans during the early 20th century?",
+    "options": {
+      "A": "Jazz",
+      "B": "Blues",
+      "C": "Gospel",
+      "D": "Ragtime"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 4,
+    "question": "What keyboard instrument uses hammers to strike strings?",
+    "options": {
+      "A": "Organ",
+      "B": "Harpsichord",
+      "C": "Piano",
+      "D": "Celesta"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 5,
+    "question": "What style features distorted guitars and aggressive vocals?",
+    "options": {
+      "A": "Heavy metal",
+      "B": "Folk music",
+      "C": "Bossa nova",
+      "D": "Swing jazz"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 6,
+    "question": "What term describes a song's main repeating section with lyrics?",
+    "options": {
+      "A": "Chorus",
+      "B": "Bridge",
+      "C": "Outro",
+      "D": "Intro"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 7,
+    "question": "Which awards show has frequently been hosted at Radio City Music Hall in New York City?",
+    "options": {
+      "A": "BET Awards",
+      "B": "American Music Awards",
+      "C": "Billboard Music Awards",
+      "D": "MTV Video Music Awards"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 8,
+    "question": "Which notation symbol cancels a sharp or flat?",
+    "options": {
+      "A": "Tie",
+      "B": "Natural",
+      "C": "Rest",
+      "D": "Clef"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 9,
+    "question": "Which singer's 1982 release became the best-selling record of all time?",
+    "options": {
+      "A": "Michael Jackson",
+      "B": "Paul McCartney",
+      "C": "Madonna",
+      "D": "Whitney Houston"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 10,
+    "question": "What device allows electric guitarists to modify their sound through floor-mounted units?",
+    "options": {
+      "A": "Amplifier cabinet",
+      "B": "Effects pedal",
+      "C": "Pickup selector",
+      "D": "Volume controller"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 11,
+    "question": "Which movement originated in the UK's underground indie scene in the late 1980s?",
+    "options": {
+      "A": "Grunge",
+      "B": "Britpop",
+      "C": "Shoegaze",
+      "D": "Madchester"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 12,
+    "question": "What happens when a performer plays notes in reverse chronological order?",
+    "options": {
+      "A": "Retrograde execution",
+      "B": "Mirror reflection",
+      "C": "Circular motion",
+      "D": "Sequential reversal"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 13,
+    "question": "Which Irish group achieved worldwide success with their fusion of traditional and contemporary sounds in 1993?",
+    "options": {
+      "A": "U2",
+      "B": "The Corrs",
+      "C": "The Saw Doctors",
+      "D": "The Cranberries"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 14,
+    "question": "What Romantic-era composer is famous for short expressive works designed for solo keyboard?",
+    "options": {
+      "A": "Frédéric Chopin",
+      "B": "Franz Liszt",
+      "C": "Robert Schumann",
+      "D": "Johannes Brahms"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 15,
+    "question": "Which film franchise features musical themes composed by John Williams beginning in 1977?",
+    "options": {
+      "A": "Dirty Harry",
+      "B": "Indiana Jones",
+      "C": "Star Wars",
+      "D": "Jaws"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 16,
+    "question": "What technique allows producers to improve vocal performances after recording?",
+    "options": {
+      "A": "Equalization filtering",
+      "B": "Reverb processing",
+      "C": "Compression adjustment",
+      "D": "Pitch correction"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 17,
+    "question": "Which experimental group released a groundbreaking record featuring tape loops and backwards recordings in 1966?",
+    "options": {
+      "A": "The Beatles",
+      "B": "The Beach Boys",
+      "C": "The Velvet Underground",
+      "D": "The Mothers of Invention"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 18,
+    "question": "What ancient Greek theoretical concept divides strings based on mathematical ratios?",
+    "options": {
+      "A": "Ptolemaic divisions",
+      "B": "Aristoxenian intervals",
+      "C": "Pythagorean tuning",
+      "D": "Euclidean proportions"
+    },
+    "correct_answer": "C",
+    "category": "Music"
+  },
+  {
+    "id": 19,
+    "question": "Which bebop innovator revolutionized saxophone technique in the 1940s?",
+    "options": {
+      "A": "Charlie Parker",
+      "B": "Dizzy Gillespie",
+      "C": "Thelonious Monk",
+      "D": "Bud Powell"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 20,
+    "question": "What 1969 outdoor festival in California, later infamous for its violence, drew roughly 300,000 attendees?",
+    "options": {
+      "A": "Woodstock",
+      "B": "Monterey Pop",
+      "C": "Isle of Wight",
+      "D": "Altamont"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  },
+  {
+    "id": 21,
+    "question": "Which avant-garde movement sought to minimize or reject fixed musical structure?",
+    "options": {
+      "A": "Indeterminacy",
+      "B": "Serialism",
+      "C": "Spectralism",
+      "D": "Futurism"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 22,
+    "question": "What medieval stringed device produces sound through a rotating wheel rubbing against strings?",
+    "options": {
+      "A": "Lute",
+      "B": "Hurdy-gurdy",
+      "C": "Psaltery",
+      "D": "Rebec"
+    },
+    "correct_answer": "B",
+    "category": "Music"
+  },
+  {
+    "id": 23,
+    "question": "Which 1958 work by Edgard Varèse pioneered the integration of pre-recorded sounds into live performance?",
+    "options": {
+      "A": "Poeme electronique",
+      "B": "Un grand sommeil noir",
+      "C": "Dance for Burgess",
+      "D": "Tuning Up"
+    },
+    "correct_answer": "A",
+    "category": "Music"
+  },
+  {
+    "id": 24,
+    "question": "What West African percussion tradition involves interlocking patterns between multiple drummers?",
+    "options": {
+      "A": "Syncopated displacement",
+      "B": "Ostinato cycling",
+      "C": "Cross-rhythm phrasing",
+      "D": "Polyrhythmic layering"
+    },
+    "correct_answer": "D",
+    "category": "Music"
+  }
+];
+
+                const form = document.getElementById("quizForm");
+                
+                questions.forEach((q, index) => {
+                    console.log("Processing Question:", q.id);
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionText = document.createElement("p");
+                    questionText.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+                    questionDiv.appendChild(questionText);
+
+                    Object.entries(q.options).forEach(([key, value]) => {
+                        const input = document.createElement("input");
+                        input.type = "radio";
+                        input.name = `q${q.id}`;
+                        input.value = key;
+
+                        const label = document.createElement("label");
+                        label.innerHTML = ` ${key}) ${value}<br>`;
+
+                        questionDiv.appendChild(input);
+                        questionDiv.appendChild(label);
+                    });
+
+                    form.appendChild(questionDiv);
+                });
+
+                document.getElementById("submitBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    let score = 0;
+                    let total = questions.length;
+                    let resultText = "<h3>Results:</h3>";
+
+                    questions.forEach(q => {
+                        let selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected) {
+                            if (selected.value === q.correct_answer) {
+                                score++;
+                                resultText += `<p>Question ${q.id}: Correct ✅</p>`;
+                            } else {
+                                resultText += `<p>Question ${q.id}: Incorrect ❌ (Correct: ${q.correct_answer})</p>`;
+                            }
+                        } else {
+                            resultText += `<p>Question ${q.id}: No answer selected ❌ (Correct: ${q.correct_answer})</p>`;
+                        }
+                    });
+
+                    resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
+                    document.getElementById("result").innerHTML = resultText;
+                    
+                    const scoreDisplay = document.getElementById("scoreDisplay");
+                    scoreDisplay.style.display = "block";
+                    document.getElementById("scoreValue").textContent = score;
+                    document.getElementById("totalQuestions").textContent = total;
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    const progressBar = document.getElementById("progressBar");
+                    progressBar.style.width = `${percentage}%`;
+                    progressBar.textContent = `${percentage}%`;
+                    
+                    if (score < 12) {
+                        progressBar.style.backgroundColor = "#dc3545"; // Red
+                    } else if (score < 20) {
+                        progressBar.style.backgroundColor = "#ffc107"; // Yellow
+                    } else {
+                        progressBar.style.backgroundColor = "#28a745"; // Green
+                    }
+                    
+                    // Create a unique key for this test
+                    const testKey = `music-general-7`;
+                    
+                    // Save the score
+                    localStorage.setItem(testKey, score);
+                });
+    </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <p>© Copyright 2026</p>
+        <p><a href="mailto:info@superquiz.online" class="footer-email">info@superquiz.online</a></p>
+        <p>All rights reserved</p>        
+        <p class="footer-made">Made by MB</p>
+    </div>
+    </footer>
+</body>
+</html>
