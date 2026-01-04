@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	  <title>Celebrities Quiz | General 4 | superquiz.online</title>
+	  <meta name="description" content="Free Celebrities quiz online, no sign-up, instant results.">
+	  <meta name="keywords" content="Free Celebrities quiz online, Actors quiz, Sportsmen quiz, Scientists quiz, Artists quiz, Writers quiz, Influencers quiz">
+    <meta name="author" content="superquiz.online">
+  	<meta name="robots" content="index, follow">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91YPWNDHXE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-91YPWNDHXE');
+</script>
+    <style>
+		html, body {
+          height: 100%;
+          /* margin: 0; */
+        }
+		
+        body {
+            font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+            margin: 40px auto;
+            max-width: 600px;
+            align-items: center;
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			width: 90%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            /* left: 0;
+            right: 0; */
+            z-index: 100;
+            max-width: 600px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .passage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #e3f2fd;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+        
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-button {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            fill: #23236E;
+            transition: fill 0.3s;
+        }
+
+        .home-button:hover .home-icon {
+            fill: #2980b9;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+        color: #000000;
+        text-align: bottom;
+        padding: 5px;
+        margin-top: 50px;
+        width: 100%;
+        flex-shrink: 0;
+        font-size: small;
+        line-height: 12px;
+        position: relative;
+        bottom: 0px;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        
+        .footer-email {
+            color: #23236E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-email:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .footer-spacer {
+            height: 30px;
+            width: 100%;
+        }
+        
+        .footer-made {
+            margin-top: 10px;
+        }
+        
+        .footer-maker {
+            font-size: 1.3em;
+        }
+
+        .score-display {
+			width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            height: 24px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="javascript:history.back()" class="home-button">
+            <svg width="25.6" height="22.4" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.292893 7.29289C-0.097631 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292893 7.29289ZM18 7L1 7L1 9L18 9L18 7Z" fill="#23236E"/>
+            </svg>
+        </a>
+        <h2>General Celebrities 4</h2>
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="passageContainer"></div> <form id="quizForm"></form>
+    
+    <div class="score-display" id="scoreDisplay" style="display: none;">
+        <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+    <div id="result" class="result"></div>
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "question": "Which pop singer postponed her entire 2023 world tour after revealing a diagnosis of stiff-person syndrome?",
+    "options": {
+      "A": "Adele Adkins",
+      "B": "Celine Dion",
+      "C": "Mariah Carey",
+      "D": "Taylor Swift"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 2,
+    "question": "Which tech entrepreneur legally changed his social media platform's name from Twitter to X in 2023?",
+    "options": {
+      "A": "Mark Zuckerberg",
+      "B": "Jack Dorsey",
+      "C": "Elon Musk",
+      "D": "Sam Altman"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 3,
+     "question": "Which British royal couple stepped back from senior royal duties and relocated to California in 2020?",
+    "options": {
+      "A": "William and Catherine",
+      "B": "Harry and Meghan",
+      "C": "Edward and Sophie",
+      "D": "Andrew and Sarah"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 4,
+    "question": "Which quarterback became the NFL's all-time leading passer in career touchdown throws during the 2021 season?",
+    "options": {
+      "A": "Patrick Mahomes",
+      "B": "Joe Burrow",
+      "C": "Tom Brady",
+      "D": "Aaron Rodgers"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 5,
+    "question": "Which actor portrayed the villain Thanos across multiple films in a major superhero franchise?",
+    "options": {
+      "A": "Josh Brolin",
+      "B": "Jeff Bridges",
+      "C": "Danny Huston",
+      "D": "Ethan Hawke"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 6,
+    "question": "Which female rapper broke streaming records with her debut album released in 2018 featuring the hit single about money?",
+    "options": {
+      "A": "Nicki Minaj",
+      "B": "Megan Thee Stallion",
+      "C": "Cardi B",
+      "D": "Doja Cat"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 7,
+    "question": "Which actor posthumously received an Academy Award after his death in 2008 for portraying a chaotic villain in a superhero film?",
+    "options": {
+      "A": "Philip Seymour Hoffman",
+      "B": "Heath Ledger",
+      "C": "Paul Walker",
+      "D": "Robin Williams"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 8,
+    "question": "Which filmmaker became the first woman to win the Academy Award for Best Director?",
+    "options": {
+      "A": "Kathryn Bigelow",
+      "B": "Jane Campion",
+      "C": "Chloe Zhao",
+      "D": "Sofia Coppola"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 9,
+    "question": "Which former professional wrestler transitioned to acting and starred in multiple action franchises including one about street racing?",
+    "options": {
+      "A": "John Cena",
+      "B": "Dave Bautista",
+      "C": "Dwayne Johnson",
+      "D": "Steve Austin"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 10,
+    "question": "Which soccer player transferred to Inter Miami in 2023 after winning the World Cup?",
+    "options": {
+      "A": "Cristiano Ronaldo",
+      "B": "Lionel Messi",
+      "C": "Neymar Junior",
+      "D": "Kylian Mbappe"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 11,
+    "question": "Which talk show host faced workplace misconduct allegations that led to the ending of her daytime program in 2022?",
+    "options": {
+      "A": "Ellen DeGeneres",
+      "B": "Wendy Williams",
+      "C": "Kelly Clarkson",
+      "D": "Drew Barrymore"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 12,
+    "question": "Which Korean filmmaker won the Palme d'Or at Cannes and later became the first from his country to win Best Picture at the Oscars?",
+    "options": {
+      "A": "Park Chan-wook",
+      "B": "Bong Joon-ho",
+      "C": "Kim Ki-duk",
+      "D": "Lee Chang-dong"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 13,
+    "question": "Which tennis player announced her retirement from professional tennis in 2022 through an essay in a major business magazine?",
+    "options": {
+      "A": "Maria Sharapova",
+      "B": "Venus Williams",
+      "C": "Serena Williams",
+      "D": "Naomi Osaka"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 14,
+    "question": "Which climate activist was arrested multiple times during environmental protests despite being a teenager?",
+    "options": {
+      "A": "Greta Thunberg",
+      "B": "Malala Yousafzai",
+      "C": "Emma Watson",
+      "D": "Alexandria Ocasio-Cortez"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 15,
+    "question": "Which reality TV family matriarch built a billion-dollar cosmetics empire primarily through social media marketing?",
+    "options": {
+      "A": "Kim Kardashian",
+      "B": "Kylie Jenner",
+      "C": "Kris Jenner",
+      "D": "Kourtney Kardashian"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 16,
+    "question": "Which actress became the youngest person ever to achieve EGOT status by winning all four major American entertainment awards?",
+    "options": {
+      "A": "Viola Davis",
+      "B": "Jennifer Hudson",
+      "C": "Whoopi Goldberg",
+      "D": "Rita Moreno"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 17,
+    "question": "Which creator developed a spy character who first appeared in a television series and was later adapted into a major film franchise?",
+    "options": {
+      "A": "Bruce Geller with Ethan Hunt",
+      "B": "Sheldon Reynolds with Dave Bishop",
+      "C": "Ian Fleming with James Bond",
+      "D": "Robert Ludlum with Jason Bourne"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 18,
+    "question": "Which billionaire philanthropist co-founded a major software corporation and later focused on global health initiatives through his foundation?",
+    "options": {
+      "A": "Bill Gates",
+      "B": "Larry Page",
+      "C": "Mark Zuckerberg",
+      "D": "Larry Ellison"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 19,
+    "question": "Which chess prodigy first became a grandmaster at age 13 and later won the World Chess Championship?",
+    "options": {
+      "A": "Garry Kasparov",
+      "B": "Viswanathan Anand",
+      "C": "Magnus Carlsen",
+      "D": "Hikaru Nakamura"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 20,
+    "question": "Which fashion designer was known for incorporating safety pins into haute couture and served as creative director for multiple luxury houses?",
+    "options": {
+      "A": "John Galliano",
+      "B": "Alexander McQueen",
+      "C": "Vivienne Westwood",
+      "D": "Jean Paul Gaultier"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 21,
+    "question": "Which astrophysicist hosts a science communication show and frequently appears on social media explaining complex scientific concepts?",
+    "options": {
+      "A": "Brian Cox",
+      "B": "Michio Kaku",
+      "C": "Sean Carroll",
+      "D": "Neil deGrasse Tyson"
+    },
+    "correct_answer": "D",
+    "category": "Celebrities"
+  },
+  {
+    "id": 22,
+    "question": "Which streaming content creator became the most-subscribed individual on a video platform before being surpassed in 2019?",
+    "options": {
+      "A": "PewDiePie",
+      "B": "MrBeast",
+      "C": "Markiplier",
+      "D": "Jacksepticeye"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 23,
+    "question": "Which gymnast withdrew from multiple Olympic events in 2021 citing mental health concerns, sparking global conversation?",
+    "options": {
+      "A": "Aly Raisman",
+      "B": "Simone Biles",
+      "C": "Gabby Douglas",
+      "D": "Nastia Liukin"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 24,
+    "question": "Who is often cited as the richest person in history when adjusted for modern wealth estimates?",
+    "options": {
+      "A": "Mansa Musa",
+      "B": "Mughal Emperor Akbar I",
+      "C": "Elon Musk",
+      "D": "John D. Rockefeller"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  }
+];
+
+                const form = document.getElementById("quizForm");
+                
+                questions.forEach((q, index) => {
+                    console.log("Processing Question:", q.id);
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionText = document.createElement("p");
+                    questionText.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+                    questionDiv.appendChild(questionText);
+
+                    Object.entries(q.options).forEach(([key, value]) => {
+                        const input = document.createElement("input");
+                        input.type = "radio";
+                        input.name = `q${q.id}`;
+                        input.value = key;
+
+                        const label = document.createElement("label");
+                        label.innerHTML = ` ${key}) ${value}<br>`;
+
+                        questionDiv.appendChild(input);
+                        questionDiv.appendChild(label);
+                    });
+
+                    form.appendChild(questionDiv);
+                });
+
+                document.getElementById("submitBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    let score = 0;
+                    let total = questions.length;
+                    let resultText = "<h3>Results:</h3>";
+
+                    questions.forEach(q => {
+                        let selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected) {
+                            if (selected.value === q.correct_answer) {
+                                score++;
+                                resultText += `<p>Question ${q.id}: Correct ✅</p>`;
+                            } else {
+                                resultText += `<p>Question ${q.id}: Incorrect ❌ (Correct: ${q.correct_answer})</p>`;
+                            }
+                        } else {
+                            resultText += `<p>Question ${q.id}: No answer selected ❌ (Correct: ${q.correct_answer})</p>`;
+                        }
+                    });
+
+                    resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
+                    document.getElementById("result").innerHTML = resultText;
+                    
+                    const scoreDisplay = document.getElementById("scoreDisplay");
+                    scoreDisplay.style.display = "block";
+                    document.getElementById("scoreValue").textContent = score;
+                    document.getElementById("totalQuestions").textContent = total;
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    const progressBar = document.getElementById("progressBar");
+                    progressBar.style.width = `${percentage}%`;
+                    progressBar.textContent = `${percentage}%`;
+                    
+                    if (score < 12) {
+                        progressBar.style.backgroundColor = "#dc3545"; // Red
+                    } else if (score < 20) {
+                        progressBar.style.backgroundColor = "#ffc107"; // Yellow
+                    } else {
+                        progressBar.style.backgroundColor = "#28a745"; // Green
+                    }
+                    
+                    // Create a unique key for this test
+                    const testKey = `celebrities-general-4`;
+                    
+                    // Save the score
+                    localStorage.setItem(testKey, score);
+                });
+    </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <p>© Copyright 2026</p>
+        <p><a href="mailto:info@superquiz.online" class="footer-email">info@superquiz.online</a></p>
+        <p>All rights reserved</p>        
+        <p class="footer-made">Made by MB</p>
+    </div>
+    </footer>
+</body>
+</html>
