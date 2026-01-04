@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	  <title>Sports Quiz | General 5 | superquiz.online</title>
+	  <meta name="description" content="Free Sports quiz online, no sign-up, instant results.">
+	  <meta name="keywords" content="Free Sports quiz online, Sportsmen quiz, Olympics quiz, Soccer quiz, Basketball quiz, Tennis quiz, Baseball quiz, Chess quiz">
+    <meta name="author" content="superquiz.online">
+  	<meta name="robots" content="index, follow">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91YPWNDHXE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-91YPWNDHXE');
+</script>
+    <style>
+		html, body {
+          height: 100%;
+          /* margin: 0; */
+        }
+		
+        body {
+            font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+            margin: 40px auto;
+            max-width: 600px;
+            align-items: center;
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			width: 90%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            /* left: 0;
+            right: 0; */
+            z-index: 100;
+            max-width: 600px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .passage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #e3f2fd;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+        
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-button {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            fill: #23236E;
+            transition: fill 0.3s;
+        }
+
+        .home-button:hover .home-icon {
+            fill: #2980b9;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+        color: #000000;
+        text-align: bottom;
+        padding: 5px;
+        margin-top: 50px;
+        width: 100%;
+        flex-shrink: 0;
+        font-size: small;
+        line-height: 12px;
+        position: relative;
+        bottom: 0px;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        
+        .footer-email {
+            color: #23236E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-email:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .footer-spacer {
+            height: 30px;
+            width: 100%;
+        }
+        
+        .footer-made {
+            margin-top: 10px;
+        }
+        
+        .footer-maker {
+            font-size: 1.3em;
+        }
+
+        .score-display {
+			width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            height: 24px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="javascript:history.back()" class="home-button">
+            <svg width="25.6" height="22.4" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.292893 7.29289C-0.097631 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292893 7.29289ZM18 7L1 7L1 9L18 9L18 7Z" fill="#23236E"/>
+            </svg>
+        </a>
+        <h2>General Sports 5</h2>
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="passageContainer"></div> <form id="quizForm"></form>
+    
+    <div class="score-display" id="scoreDisplay" style="display: none;">
+        <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+    <div id="result" class="result"></div>
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "question": "In professional Badminton, how many feathers are officially required to construct a standard shuttlecock?",
+    "options": {
+      "A": "12",
+      "B": "14",
+      "C": "16",
+      "D": "18"
+    },
+    "correct_answer": "C",
+    "category": "Sports"
+  },
+  {
+    "id": 2,
+    "question": "Which specific swimming style is the only one where the competitor starts the race from inside the water?",
+    "options": {
+      "A": "Butterfly",
+      "B": "Freestyle",
+      "C": "Backstroke",
+      "D": "Breaststroke"
+    },
+    "correct_answer": "C",
+    "category": "Sports"
+  },
+  {
+    "id": 3,
+    "question": "In the sport of Fencing, which of the three weapons restricts the valid target area solely to the torso?",
+    "options": {
+      "A": "The Foil",
+      "B": "The Épée",
+      "C": "The Sabre",
+      "D": "The Spada"
+    },
+    "correct_answer": "A",
+    "category": "Sports"
+  },
+  {
+    "id": 4,
+    "question": "What is the standard diameter in inches of a regulation golf hole on a putting green?",
+    "options": {
+      "A": "3.50",
+      "B": "4.25",
+      "C": "4.75",
+      "D": "5.00"
+    },
+    "correct_answer": "B",
+    "category": "Sports"
+  },
+  {
+    "id": 5,
+    "question": "In a standard Triathlon event, in what specific order must the three disciplines be completed?",
+    "options": {
+      "A": "Run, Cycle, Swim",
+      "B": "Swim, Cycle, Run",
+      "C": "Cycle, Swim, Run",
+      "D": "Swim, Run, Cycle"
+    },
+    "correct_answer": "B",
+    "category": "Sports"
+  },
+  {
+    "id": 6,
+    "question": "Which piece in the game of Chess is the only one capable of turning into the Queen?",
+    "options": {
+      "A": "Bishop",
+      "B": "Knight",
+      "C": "Pawn",
+      "D": "King"
+    },
+    "correct_answer": "C",
+    "category": "Sports"
+  },
+  {
+    "id": 7,
+    "question": "In Ten-Pin Bowling, what is the colloquial term for three consecutive strikes rolled in a single game?",
+    "options": {
+      "A": "Chicken",
+      "B": "Turkey",
+      "C": "Pigeon",
+      "D": "Falcon"
+    },
+    "correct_answer": "B",
+    "category": "Sports"
+  },
+  {
+    "id": 8,
+    "question": "What is the primary distinctive feature of the ball used in the sport of Squash compared to other racquet sports?",
+    "options": {
+      "A": "It has uneven weight",
+      "B": "It is made of cork",
+      "C": "It is filled with water",
+      "D": "It doesn't bounce when cold"
+    },
+    "correct_answer": "D",
+    "category": "Sports"
+  },
+  {
+    "id": 9,
+    "question": "In Rugby League (distinct from Rugby Union), how many players constitute a full team on the field?",
+    "options": {
+      "A": "10",
+      "B": "12",
+      "C": "13",
+      "D": "15"
+    },
+    "correct_answer": "C",
+    "category": "Sports"
+  },
+  {
+    "id": 10,
+    "question": "What is the 'Lanterne Rouge' (Red Lantern) awarded for in the Tour de France cycling race?",
+    "options": {
+      "A": "Most aggressive rider",
+      "B": "Best young rider",
+      "C": "Finishing in last place",
+      "D": "Winning the mountain stage"
+    },
+    "correct_answer": "C",
+    "category": "Sports"
+  },
+  {
+    "id": 11,
+    "question": "In the Winter Olympics, what is the primary technical difference between the Luge and the Skeleton events?",
+    "options": {
+      "A": "Luge uses a closed track",
+      "B": "Skeleton has two riders",
+      "C": "Skeleton is ridden head-first",
+      "D": "Luge sleds have no runners"
+    },
+    "correct_answer": "C",
+    "category": "Sports"
+  },
+  {
+    "id": 12,
+    "question": "The 'Marquess of Queensberry Rules', drafted in 1867, form the foundation for which modern sport?",
+    "options": {
+      "A": "Horse Racing",
+      "B": "European Football",
+      "C": "Court Tennis",
+      "D": "Professional Boxing"
+    },
+    "correct_answer": "D",
+    "category": "Sports"
+  },
+  {
+    "id": 13,
+    "question": "In modern Olympic Gold Medals, what represents the largest percentage of the metal composition?",
+    "options": {
+      "A": "Pure Gold",
+      "B": "Sterling Silver",
+      "C": "Bronze Alloy",
+      "D": "Nickel Copper"
+    },
+    "correct_answer": "B",
+    "category": "Sports"
+  },
+  {
+    "id": 14,
+    "question": "Which specific tennis term describes a serve that touches the net but still lands in the correct service box?",
+    "options": {
+      "A": "Let",
+      "B": "Net",
+      "C": "Fault",
+      "D": "Deuce"
+    },
+    "correct_answer": "A",
+    "category": "Sports"
+  },
+  {
+    "id": 15,
+    "question": "In Polo, which hand are players strictly required to use to hold the mallet for safety reasons?",
+    "options": {
+      "A": "Right hand",
+      "B": "Left hand",
+      "C": "Either hand",
+      "D": "Both hands"
+    },
+    "correct_answer": "A",
+    "category": "Sports"
+  },
+  {
+    "id": 16,
+    "question": "The 'Fosbury Flop', a technique that revolutionized the High Jump, was first introduced in which Olympics?",
+    "options": {
+      "A": "1960 Rome",
+      "B": "1964 Tokyo",
+      "C": "1968 Mexico",
+      "D": "1972 Munich"
+    },
+    "correct_answer": "C",
+    "category": "Sports"
+  },
+  {
+    "id": 17,
+    "question": "Which American athlete famously won four gold medals at the 1936 Berlin Olympics, defying Nazi ideology?",
+    "options": {
+      "A": "Louis Zamperini",
+      "B": "Jackie Robinson",
+      "C": "Jesse Owens",
+      "D": "Mack Robinson"
+    },
+    "correct_answer": "C",
+    "category": "Sports"
+  },
+  {
+    "id": 18,
+    "question": "What is the maximum weight in grams allowed for a standard ball used in sanctioned Table Tennis competitions?",
+    "options": {
+      "A": "1.9",
+      "B": "2.7",
+      "C": "3.2",
+      "D": "3.5"
+    },
+    "correct_answer": "B",
+    "category": "Sports"
+  },
+  {
+    "id": 19,
+    "question": "In the 1950 World Cup, known as the 'Maracanazo', which team defeated Brazil in the final match at the Maracanã?",
+    "options": {
+      "A": "Argentina",
+      "B": "Germany",
+      "C": "Uruguay",
+      "D": "Italy"
+    },
+    "correct_answer": "C",
+    "category": "Sports"
+  },
+  {
+    "id": 20,
+    "question": "Which female athlete was the first to win Olympic medals in both the Summer and Winter Games?",
+    "options": {
+      "A": "Clara Hughes",
+      "B": "Lauryn Williams",
+      "C": "Jackie Joyner-Kersee",
+      "D": "Christa Luding-Rothenburger"
+    },
+    "correct_answer": "D",
+    "category": "Sports"
+  },
+  {
+    "id": 21,
+    "question": "Which NBA player holds the unbreakable record for the most rebounds grabbed in a single game (55 rebounds)?",
+    "options": {
+      "A": "Bill Russell",
+      "B": "Dennis Rodman",
+      "C": "Wilt Chamberlain",
+      "D": "Kareem Abdul-Jabbar"
+    },
+    "correct_answer": "C",
+    "category": "Sports"
+  },
+  {
+    "id": 22,
+    "question": "At the 1904 St. Louis Olympics Marathon, what did the eventual winner Thomas Hicks consume during the race?",
+    "options": {
+      "A": "Raw eggs and milk",
+      "B": "Strychnine and brandy",
+      "C": "Vodka and orange juice",
+      "D": "Espresso and chocolate"
+    },
+    "correct_answer": "B",
+    "category": "Sports"
+  },
+  {
+    "id": 23,
+    "question": "In Baseball history, what is the specific distance between the pitcher's mound rubber and home plate?",
+    "options": {
+      "A": "55 feet 6 inches",
+      "B": "58 feet 0 inches",
+      "C": "60 feet 6 inches",
+      "D": "62 feet 0 inches"
+    },
+    "correct_answer": "C",
+    "category": "Sports"
+  },
+  {
+    "id": 24,
+    "question": "Which sailing vessel famously ended the United States' 132-year winning streak in the America's Cup in 1983?",
+    "options": {
+      "A": "Australia II",
+      "B": "Royal Perth",
+      "C": "Southern Cross",
+      "D": "Kiwi Magic"
+    },
+    "correct_answer": "A",
+    "category": "Sports"
+  }
+];
+
+                const form = document.getElementById("quizForm");
+                
+                questions.forEach((q, index) => {
+                    console.log("Processing Question:", q.id);
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionText = document.createElement("p");
+                    questionText.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+                    questionDiv.appendChild(questionText);
+
+                    Object.entries(q.options).forEach(([key, value]) => {
+                        const input = document.createElement("input");
+                        input.type = "radio";
+                        input.name = `q${q.id}`;
+                        input.value = key;
+
+                        const label = document.createElement("label");
+                        label.innerHTML = ` ${key}) ${value}<br>`;
+
+                        questionDiv.appendChild(input);
+                        questionDiv.appendChild(label);
+                    });
+
+                    form.appendChild(questionDiv);
+                });
+
+                document.getElementById("submitBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    let score = 0;
+                    let total = questions.length;
+                    let resultText = "<h3>Results:</h3>";
+
+                    questions.forEach(q => {
+                        let selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected) {
+                            if (selected.value === q.correct_answer) {
+                                score++;
+                                resultText += `<p>Question ${q.id}: Correct ✅</p>`;
+                            } else {
+                                resultText += `<p>Question ${q.id}: Incorrect ❌ (Correct: ${q.correct_answer})</p>`;
+                            }
+                        } else {
+                            resultText += `<p>Question ${q.id}: No answer selected ❌ (Correct: ${q.correct_answer})</p>`;
+                        }
+                    });
+
+                    resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
+                    document.getElementById("result").innerHTML = resultText;
+                    
+                    const scoreDisplay = document.getElementById("scoreDisplay");
+                    scoreDisplay.style.display = "block";
+                    document.getElementById("scoreValue").textContent = score;
+                    document.getElementById("totalQuestions").textContent = total;
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    const progressBar = document.getElementById("progressBar");
+                    progressBar.style.width = `${percentage}%`;
+                    progressBar.textContent = `${percentage}%`;
+                    
+                    if (score < 12) {
+                        progressBar.style.backgroundColor = "#dc3545"; // Red
+                    } else if (score < 20) {
+                        progressBar.style.backgroundColor = "#ffc107"; // Yellow
+                    } else {
+                        progressBar.style.backgroundColor = "#28a745"; // Green
+                    }
+                    
+                    // Create a unique key for this test
+                    const testKey = `sports-general-5`;
+                    
+                    // Save the score
+                    localStorage.setItem(testKey, score);
+                });
+    </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <p>© Copyright 2026</p>
+        <p><a href="mailto:info@superquiz.online" class="footer-email">info@superquiz.online</a></p>
+        <p>All rights reserved</p>        
+        <p class="footer-made">Made by MB</p>
+    </div>
+    </footer>
+</body>
+</html>
