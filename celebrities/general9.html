@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	  <title>Celebrities Quiz | General 9 | superquiz.online</title>
+	  <meta name="description" content="Free Celebrities quiz online, no sign-up, instant results.">
+	  <meta name="keywords" content="Free Celebrities quiz online, Actors quiz, Sportsmen quiz, Scientists quiz, Artists quiz, Writers quiz, Influencers quiz">
+    <meta name="author" content="superquiz.online">
+  	<meta name="robots" content="index, follow">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91YPWNDHXE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-91YPWNDHXE');
+</script>
+    <style>
+		html, body {
+          height: 100%;
+          /* margin: 0; */
+        }
+		
+        body {
+            font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+            margin: 40px auto;
+            max-width: 600px;
+            align-items: center;
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			width: 90%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            /* left: 0;
+            right: 0; */
+            z-index: 100;
+            max-width: 600px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .passage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #e3f2fd;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+        
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-button {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            fill: #23236E;
+            transition: fill 0.3s;
+        }
+
+        .home-button:hover .home-icon {
+            fill: #2980b9;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+        color: #000000;
+        text-align: bottom;
+        padding: 5px;
+        margin-top: 50px;
+        width: 100%;
+        flex-shrink: 0;
+        font-size: small;
+        line-height: 12px;
+        position: relative;
+        bottom: 0px;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        
+        .footer-email {
+            color: #23236E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-email:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .footer-spacer {
+            height: 30px;
+            width: 100%;
+        }
+        
+        .footer-made {
+            margin-top: 10px;
+        }
+        
+        .footer-maker {
+            font-size: 1.3em;
+        }
+
+        .score-display {
+			width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            height: 24px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="javascript:history.back()" class="home-button">
+            <svg width="25.6" height="22.4" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.292893 7.29289C-0.097631 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292893 7.29289ZM18 7L1 7L1 9L18 9L18 7Z" fill="#23236E"/>
+            </svg>
+        </a>
+        <h2>General Celebrities 9</h2>
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="passageContainer"></div> <form id="quizForm"></form>
+    
+    <div class="score-display" id="scoreDisplay" style="display: none;">
+        <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+    <div id="result" class="result"></div>
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "question": "Which hockey legend held the NHL regular-season goals record before being surpassed by Ovechkin?",
+    "options": {
+      "A": "Sidney Crosby",
+      "B": "Mario Lemieux",
+      "C": "Gordie Howe",
+      "D": "Wayne Gretzky"
+    },
+    "correct_answer": "D",
+    "category": "Celebrities"
+  },
+  {
+    "id": 2,
+    "question": "Which song brought the victory to Dana International of Israel in 1998?",
+    "options": {
+      "A": "Diva",
+      "B": "Why Me?",
+      "C": "In Your Eyes",
+      "D": "The Voice"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 3,
+    "question": "Which German band is known for its dark video clips?",
+    "options": {
+      "A": "Scorpions",
+      "B": "Destruction",
+      "C": "Rammstein",
+      "D": "Tankard"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 4,
+    "question": "Which singer-songwriter is credited with popularizing reggae music worldwide and was a committed Rastafarian?",
+    "options": {
+      "A": "Peter Tosh",
+      "B": "Jimmy Cliff",
+      "C": "Bob Marley",
+      "D": "Bunny Wailer"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 5,
+    "question": "Angela Merkel served as the Chancellor of which European nation from 2005 to 2021, becoming its first female leader?",
+    "options": {
+      "A": "Austria",
+      "B": "Germany",
+      "C": "Belgium",
+      "D": "Switzerland"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+{
+    "id": 6,
+    "question": "Luciano Pavarotti, one of the most commercially successful tenors of all time, was a native of which country?",
+    "options": {
+      "A": "Italy",
+      "B": "Spain",
+      "C": "Argentina",
+      "D": "France"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 7,
+    "question": "Which actor played in 'The Hangover' and has a child with supermodel Irina Shayk?",
+    "options": {
+      "A": "Ed Helms",
+      "B": "Zach Galifianakis",
+      "C": "Justin Bartha",
+      "D": "Bradley Cooper"
+    },
+    "correct_answer": "D",
+    "category": "Celebrities"
+  },
+   {
+    "id": 8,
+    "question": "Valentina Tereshkova, a Soviet cosmonaut, achieved a historic milestone in 1963 by becoming the first woman to do what?",
+    "options": {
+      "A": "Walk on the Moon",
+      "B": "Fly into Space",
+      "C": "Command a Space Station",
+      "D": "Pilot a Space Shuttle"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 9,
+    "question": "Sir Tim Berners-Lee, an English computer scientist, is best known as the inventor of which revolutionary system?",
+    "options": {
+      "A": "The Internet Protocol",
+      "B": "The World Wide Web",
+      "C": "The Email System",
+      "D": "The Fiber Optic Cable"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 10,
+    "question": "Haruki Murakami, a perennial contender for the Nobel Prize in Literature, is a contemporary author from which country?",
+    "options": {
+      "A": "China",
+      "B": "South Korea",
+      "C": "Japan",
+      "D": "Vietnam"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 11,
+    "question": "Which Danish actor is known for playing villains in 'Casino Royale' and the TV series 'Hannibal', as well as a teacher in 'Another Round'?",
+    "options": {
+      "A": "Viggo Mortensen",
+      "B": "Stellan Skarsgård",
+      "C": "Mads Mikkelsen",
+      "D": "Nikolaj Coster-Waldau"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 12,
+    "question": "Simón Bolívar, known as 'The Liberator', played a key role in the independence of several South American countries from which empire?",
+    "options": {
+      "A": "The British Empire",
+      "B": "The Portuguese Empire",
+      "C": "The Spanish Empire",
+      "D": "The French Empire"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 13,
+    "question": "Which Icelandic singer is famous for her eclectic musical style and for wearing a 'swan dress' to the 2001 Academy Awards?",
+    "options": {
+      "A": "Enya",
+      "B": "Björk",
+      "C": "Lorde",
+      "D": "Robyn"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 14,
+    "question": "Frida Kahlo, a Mexican painter known for her many portraits and self-portraits, was married to which famous muralist?",
+    "options": {
+      "A": "Diego Rivera",
+      "B": "David Alfaro Siqueiros",
+      "C": "José Clemente Orozco",
+      "D": "Rufino Tamayo"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 15,
+    "question": "Roger Federer, one of the most successful tennis players in history, hails from which European nation?",
+    "options": {
+      "A": "Austria",
+      "B": "Belgium",
+      "C": "Germany",
+      "D": "Switzerland"
+    },
+    "correct_answer": "D",
+    "category": "Celebrities"
+  },
+  {
+    "id": 16,
+    "question": "Indira Gandhi, the first and only female Prime Minister of India to date, was the daughter of which other leader?",
+    "options": {
+      "A": "Mahatma Gandhi",
+      "B": "Jawaharlal Nehru",
+      "C": "Sardar Patel",
+      "D": "Subhas Chandra Bose"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 17,
+    "question": "Tu Youyou became the first Chinese Nobel laureate in Physiology or Medicine for her discovery of artemisinin to treat what?",
+    "options": {
+      "A": "Tuberculosis",
+      "B": "Smallpox",
+      "C": "Malaria",
+      "D": "Influenza"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 18,
+    "question": "Mansa Musa, often cited as the wealthiest individual in history, was the 14th-century ruler of which West African empire?",
+    "options": {
+      "A": "The Ghana Empire",
+      "B": "The Mali Empire",
+      "C": "The Songhai Empire",
+      "D": "The Benin Empire"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 19,
+    "question": "Satyajit Ray, an Indian filmmaker who received an Honorary Academy Award, is best known for which trilogy of films?",
+    "options": {
+      "A": "The Apu Trilogy",
+      "B": "The Calcutta Trilogy",
+      "C": "The Elements Trilogy",
+      "D": "The Music Room Trilogy"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 20,
+    "question": "Naguib Mahfouz, the only Arab writer to win the Nobel Prize in Literature, famously chronicled life in which city?",
+    "options": {
+      "A": "Beirut",
+      "B": "Baghdad",
+      "C": "Cairo",
+      "D": "Damascus"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 21,
+    "question": "Miriam Makeba, a South African singer and civil rights activist who was exiled for decades, was popularly known as what?",
+    "options": {
+      "A": "Mama Africa",
+      "B": "Queen of the South",
+      "C": "The Voice of Hope",
+      "D": "Mother of the Nation"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 22,
+    "question": "Ai Weiwei, a contemporary artist and activist known for his criticism of the Chinese government, designed which Olympic structure?",
+    "options": {
+      "A": "The Water Cube",
+      "B": "The Bird's Nest Stadium",
+      "C": "The Munich Olympic Park",
+      "D": "The London Velodrome"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 23,
+    "question": "Leonardo da Vinci, the quintessential Renaissance man, spent his final years in France as a guest of which monarch?",
+    "options": {
+      "A": "King Louis XIV",
+      "B": "King Henry IV",
+      "C": "King Francis I",
+      "D": "King Charles VIII"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 24,
+    "question": "Toussaint Louverture was a former slave who rose to become the leader of the only successful slave revolution in history in which country?",
+    "options": {
+      "A": "Cuba",
+      "B": "Brazil",
+      "C": "Jamaica",
+      "D": "Haiti"
+    },
+    "correct_answer": "D",
+    "category": "Celebrities"
+  }
+];
+
+                const form = document.getElementById("quizForm");
+                
+                questions.forEach((q, index) => {
+                    console.log("Processing Question:", q.id);
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionText = document.createElement("p");
+                    questionText.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+                    questionDiv.appendChild(questionText);
+
+                    Object.entries(q.options).forEach(([key, value]) => {
+                        const input = document.createElement("input");
+                        input.type = "radio";
+                        input.name = `q${q.id}`;
+                        input.value = key;
+
+                        const label = document.createElement("label");
+                        label.innerHTML = ` ${key}) ${value}<br>`;
+
+                        questionDiv.appendChild(input);
+                        questionDiv.appendChild(label);
+                    });
+
+                    form.appendChild(questionDiv);
+                });
+
+                document.getElementById("submitBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    let score = 0;
+                    let total = questions.length;
+                    let resultText = "<h3>Results:</h3>";
+
+                    questions.forEach(q => {
+                        let selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected) {
+                            if (selected.value === q.correct_answer) {
+                                score++;
+                                resultText += `<p>Question ${q.id}: Correct ✅</p>`;
+                            } else {
+                                resultText += `<p>Question ${q.id}: Incorrect ❌ (Correct: ${q.correct_answer})</p>`;
+                            }
+                        } else {
+                            resultText += `<p>Question ${q.id}: No answer selected ❌ (Correct: ${q.correct_answer})</p>`;
+                        }
+                    });
+
+                    resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
+                    document.getElementById("result").innerHTML = resultText;
+                    
+                    const scoreDisplay = document.getElementById("scoreDisplay");
+                    scoreDisplay.style.display = "block";
+                    document.getElementById("scoreValue").textContent = score;
+                    document.getElementById("totalQuestions").textContent = total;
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    const progressBar = document.getElementById("progressBar");
+                    progressBar.style.width = `${percentage}%`;
+                    progressBar.textContent = `${percentage}%`;
+                    
+                    if (score < 12) {
+                        progressBar.style.backgroundColor = "#dc3545"; // Red
+                    } else if (score < 20) {
+                        progressBar.style.backgroundColor = "#ffc107"; // Yellow
+                    } else {
+                        progressBar.style.backgroundColor = "#28a745"; // Green
+                    }
+                    
+                    // Create a unique key for this test
+                    const testKey = `celebrities-general-9`;
+                    
+                    // Save the score
+                    localStorage.setItem(testKey, score);
+                });
+    </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <p>© Copyright 2026</p>
+        <p><a href="mailto:info@superquiz.online" class="footer-email">info@superquiz.online</a></p>
+        <p>All rights reserved</p>        
+        <p class="footer-made">Made by MB</p>
+    </div>
+    </footer>
+</body>
+</html>
