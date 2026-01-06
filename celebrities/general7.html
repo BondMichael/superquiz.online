@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	  <title>Celebrities Quiz | General 7 | superquiz.online</title>
+	  <meta name="description" content="Free Celebrities quiz online, no sign-up, instant results.">
+	  <meta name="keywords" content="Free Celebrities quiz online, Actors quiz, Sportsmen quiz, Scientists quiz, Artists quiz, Writers quiz, Influencers quiz">
+    <meta name="author" content="superquiz.online">
+  	<meta name="robots" content="index, follow">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91YPWNDHXE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-91YPWNDHXE');
+</script>
+    <style>
+		html, body {
+          height: 100%;
+          /* margin: 0; */
+        }
+		
+        body {
+            font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+            margin: 40px auto;
+            max-width: 600px;
+            align-items: center;
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			width: 90%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            /* left: 0;
+            right: 0; */
+            z-index: 100;
+            max-width: 600px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .passage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #e3f2fd;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+        
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-button {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            fill: #23236E;
+            transition: fill 0.3s;
+        }
+
+        .home-button:hover .home-icon {
+            fill: #2980b9;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+        color: #000000;
+        text-align: bottom;
+        padding: 5px;
+        margin-top: 50px;
+        width: 100%;
+        flex-shrink: 0;
+        font-size: small;
+        line-height: 12px;
+        position: relative;
+        bottom: 0px;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        
+        .footer-email {
+            color: #23236E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-email:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .footer-spacer {
+            height: 30px;
+            width: 100%;
+        }
+        
+        .footer-made {
+            margin-top: 10px;
+        }
+        
+        .footer-maker {
+            font-size: 1.3em;
+        }
+
+        .score-display {
+			width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            height: 24px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="javascript:history.back()" class="home-button">
+            <svg width="25.6" height="22.4" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.292893 7.29289C-0.097631 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292893 7.29289ZM18 7L1 7L1 9L18 9L18 7Z" fill="#23236E"/>
+            </svg>
+        </a>
+        <h2>General Celebrities 7</h2>
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="passageContainer"></div> <form id="quizForm"></form>
+    
+    <div class="score-display" id="scoreDisplay" style="display: none;">
+        <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+    <div id="result" class="result"></div>
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "question": "Which celebrity is the most followed individual on Instagram?",
+    "options": {
+      "A": "Lionel Messi",
+      "B": "Selena Gomez",
+      "C": "Cristiano Ronaldo",
+      "D": "Dwayne Johnson"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 2,
+    "question": "Shakira, the 'Queen of Latin Music' known for the hit 'Hips Don't Lie', is a native of which South American country?",
+    "options": {
+      "A": "Colombia",
+      "B": "Venezuela",
+      "C": "Argentina",
+      "D": "Brazil"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 3,
+    "question": "Which South Korean artist achieved global viral fame in 2012 with the hit single 'Gangnam Style'?",
+    "options": {
+      "A": "Jungkook",
+      "B": "G-Dragon",
+      "C": "Psy",
+      "D": "Rain"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 4,
+    "question": "Before becoming the President of South Africa, Nelson Mandela spent 27 years in prison for opposing which political system?",
+    "options": {
+      "A": "Apartheid",
+      "B": "Communism",
+      "C": "Monarchy",
+      "D": "Theocracy"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 5,
+    "question": "Jackie Chan, an icon of martial arts cinema, is famous for performing his own stunts and holds a Guinness Record for what?",
+    "options": {
+      "A": "Highest box office gross ever",
+      "B": "Most bones broken in a lifetime",
+      "C": "Most stunts by a living actor",
+      "D": "Longest film career in history"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 6,
+    "question": "Greta Thunberg, the environmental activist known for the 'School Strike for Climate', was born in which country?",
+    "options": {
+      "A": "Norway",
+      "B": "Sweden",
+      "C": "Denmark",
+      "D": "Finland"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 7,
+    "question": "Pope Francis, elected in 2013 as the head of the Catholic Church, is the first pope to hail from which continent?",
+    "options": {
+      "A": "South America",
+      "B": "North America",
+      "C": "Australia",
+      "D": "Africa"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 8,
+    "question": "Where were the first modern Olympics held?",
+    "options": {
+      "A": "Paris",
+      "B": "London",
+      "C": "Rome",
+      "D": "Athens"
+    },
+    "correct_answer": "D",
+    "category": "Celebrities"
+  },
+  {
+    "id": 9,
+    "question": "Hayao Miyazaki is the legendary co-founder of which Japanese animation powerhouse known for 'Spirited Away'?",
+    "options": {
+      "A": "Studio Ghibli",
+      "B": "Toei Animation",
+      "C": "Kyoto Animation",
+      "D": "Madhouse Studio"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 10,
+    "question": "Aishwarya Rai, often cited as one of the 'most beautiful women in the world', rose to fame after winning which pageant in 1994?",
+    "options": {
+      "A": "Miss Universe",
+      "B": "Miss World",
+      "C": "Miss Earth",
+      "D": "Miss International"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 11,
+    "question": "Novak Djokovic, the tennis player holding the record for the most Grand Slam men's singles titles, represents which country?",
+    "options": {
+      "A": "Croatia",
+      "B": "Slovenia",
+      "C": "Serbia",
+      "D": "Slovakia"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 12,
+    "question": "Usain Bolt, the world record holder in the 100m and 200m sprint, is a national hero of which Caribbean island nation?",
+    "options": {
+      "A": "Jamaica",
+      "B": "Barbados",
+      "C": "Trinidad",
+      "D": "Bahamas"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 13,
+    "question": "Which British architect was the first woman to receive the Pritzker Architecture Prize, often called the 'Nobel of architecture'?",
+    "options": {
+      "A": "Denise Scott Brown",
+      "B": "Maya Lin",
+      "C": "Kazuyo Sejima",
+      "D": "Zaha Hadid"
+    },
+    "correct_answer": "D",
+    "category": "Celebrities"
+  },
+  {
+    "id": 14,
+    "question": "Cate Blanchett, an acclaimed actress known for 'Blue Jasmine' and 'The Lord of the Rings', began her career in which country?",
+    "options": {
+      "A": "United Kingdom",
+      "B": "United States",
+      "C": "Australia",
+      "D": "Canada"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 15,
+    "question": "Gabriel García Márquez won the Nobel Prize in Literature largely for his masterpiece 'One Hundred Years of Solitude', set in which country?",
+    "options": {
+      "A": "Colombia",
+      "B": "Mexico",
+      "C": "Chile",
+      "D": "Peru"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 16,
+    "question": "Luka Modrić broke the decade-long dominance of Messi and Ronaldo by winning the Ballon d'Or in 2018 after leading which nation to the World Cup final?",
+    "options": {
+      "A": "Serbia",
+      "B": "Croatia",
+      "C": "Slovakia",
+      "D": "Poland"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 17,
+     "question": "Kofi Annan, the Ghanaian diplomat who won the Nobel Peace Prize, served as the seventh Secretary-General of which organization?",
+    "options": {
+      "A": "The NATO Alliance",
+      "B": "The African Union",
+      "C": "The World Bank",
+      "D": "The United Nations"
+    },
+    "correct_answer": "D",
+    "category": "Celebrities"
+  },
+  {
+    "id": 18,
+    "question": "Which Nigerian author's TED Talk 'We Should All Be Feminists' was famously sampled in a song by Beyoncé?",
+    "options": {
+      "A": "Chimamanda Adichie",
+      "B": "Buchi Emecheta",
+      "C": "Wole Soyinka",
+      "D": "Chinua Achebe"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 19,
+    "question": "Antonio Vivaldi, the Italian composer of 'The Four Seasons', was nicknamed 'The Red Priest' because of what physical trait?",
+    "options": {
+      "A": "His red fingers",
+      "B": "His red hands",
+      "C": "His red hair",
+      "D": "His red face"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 20,
+    "question": "Ignaz Semmelweis, a Hungarian physician, was ostracized by the medical community for suggesting that doctors should do what?",
+    "options": {
+      "A": "Wash their hands",
+      "B": "Wear face masks",
+      "C": "Use anesthesia",
+      "D": "Sterilize tools"
+    },
+    "correct_answer": "A",
+    "category": "Celebrities"
+  },
+  {
+    "id": 21,
+    "question": "Ellen Johnson Sirleaf, a Nobel Peace Prize laureate, made history in 2006 by becoming the first elected female head of state in which continent?",
+    "options": {
+      "A": "South America",
+      "B": "Africa",
+      "C": "Asia",
+      "D": "Europe"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 22,
+    "question": "Which Japanese video game designer created the 'Metal Gear' franchise and is known for his complex, cinematic storytelling?",
+    "options": {
+      "A": "Shigeru Miyamoto",
+      "B": "Hideo Kojima",
+      "C": "Hidetaka Miyazaki",
+      "D": "Satoshi Tajiri"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  },
+  {
+    "id": 23,
+    "question": "Roald Amundsen, a Norwegian explorer, beat his British rival Robert Falcon Scott to become the first person to reach which location?",
+    "options": {
+      "A": "Mount Everest",
+      "B": "The North Pole",
+      "C": "The South Pole",
+      "D": "Point Nemo"
+    },
+    "correct_answer": "C",
+    "category": "Celebrities"
+  },
+  {
+    "id": 24,
+     "question": "Edmund Hillary, the New Zealander who was one of the first two men to climb Everest, listed his profession on official documents as what?",
+    "options": {
+      "A": "Bookkeeper",
+      "B": "Beekeeper",
+      "C": "Journalist",
+      "D": "Engineer"
+    },
+    "correct_answer": "B",
+    "category": "Celebrities"
+  }
+]
+;
+
+                const form = document.getElementById("quizForm");
+                
+                questions.forEach((q, index) => {
+                    console.log("Processing Question:", q.id);
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionText = document.createElement("p");
+                    questionText.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+                    questionDiv.appendChild(questionText);
+
+                    Object.entries(q.options).forEach(([key, value]) => {
+                        const input = document.createElement("input");
+                        input.type = "radio";
+                        input.name = `q${q.id}`;
+                        input.value = key;
+
+                        const label = document.createElement("label");
+                        label.innerHTML = ` ${key}) ${value}<br>`;
+
+                        questionDiv.appendChild(input);
+                        questionDiv.appendChild(label);
+                    });
+
+                    form.appendChild(questionDiv);
+                });
+
+                document.getElementById("submitBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    let score = 0;
+                    let total = questions.length;
+                    let resultText = "<h3>Results:</h3>";
+
+                    questions.forEach(q => {
+                        let selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected) {
+                            if (selected.value === q.correct_answer) {
+                                score++;
+                                resultText += `<p>Question ${q.id}: Correct ✅</p>`;
+                            } else {
+                                resultText += `<p>Question ${q.id}: Incorrect ❌ (Correct: ${q.correct_answer})</p>`;
+                            }
+                        } else {
+                            resultText += `<p>Question ${q.id}: No answer selected ❌ (Correct: ${q.correct_answer})</p>`;
+                        }
+                    });
+
+                    resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
+                    document.getElementById("result").innerHTML = resultText;
+                    
+                    const scoreDisplay = document.getElementById("scoreDisplay");
+                    scoreDisplay.style.display = "block";
+                    document.getElementById("scoreValue").textContent = score;
+                    document.getElementById("totalQuestions").textContent = total;
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    const progressBar = document.getElementById("progressBar");
+                    progressBar.style.width = `${percentage}%`;
+                    progressBar.textContent = `${percentage}%`;
+                    
+                    if (score < 12) {
+                        progressBar.style.backgroundColor = "#dc3545"; // Red
+                    } else if (score < 20) {
+                        progressBar.style.backgroundColor = "#ffc107"; // Yellow
+                    } else {
+                        progressBar.style.backgroundColor = "#28a745"; // Green
+                    }
+                    
+                    // Create a unique key for this test
+                    const testKey = `celebrities-general-7`;
+                    
+                    // Save the score
+                    localStorage.setItem(testKey, score);
+                });
+    </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <p>© Copyright 2026</p>
+        <p><a href="mailto:info@superquiz.online" class="footer-email">info@superquiz.online</a></p>
+        <p>All rights reserved</p>        
+        <p class="footer-made">Made by MB</p>
+    </div>
+    </footer>
+</body>
+</html>
