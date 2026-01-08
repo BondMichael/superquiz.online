@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+	  <title>Social Sciences Quiz | Psychology | superquiz.online</title>
+	  <meta name="description" content="Free Social Sciences quiz online, no sign-up, instant results.">
+	  <meta name="keywords" content="Free Social Sciences quiz online, Psychology quiz">
+    <meta name="author" content="superquiz.online">
+  	<meta name="robots" content="index, follow">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-91YPWNDHXE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-91YPWNDHXE');
+</script>
+    <style>
+		html, body {
+          height: 100%;
+          /* margin: 0; */
+        }
+		
+        body {
+            font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+            margin: 40px auto;
+            max-width: 600px;
+            align-items: center;
+            padding: 10px;
+            padding-top: 70px;
+        }
+
+		.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+			width: 90%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            /* left: 0;
+            right: 0; */
+            z-index: 100;
+            max-width: 600px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .passage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #e3f2fd;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        main {
+          flex: 1 0 auto;
+        }
+        
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .home-button {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .home-button:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .home-icon {
+            width: 24px;
+            height: 24px;
+            fill: #23236E;
+            transition: fill 0.3s;
+        }
+
+        .home-button:hover .home-icon {
+            fill: #2980b9;
+        }
+        
+        .footer {
+            background-color: #ffffff;
+        color: #000000;
+        text-align: bottom;
+        padding: 5px;
+        margin-top: 50px;
+        width: 100%;
+        flex-shrink: 0;
+        font-size: small;
+        line-height: 12px;
+        position: relative;
+        bottom: 0px;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+        
+        .footer-email {
+            color: #23236E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-email:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .footer-spacer {
+            height: 30px;
+            width: 100%;
+        }
+        
+        .footer-made {
+            margin-top: 10px;
+        }
+        
+        .footer-maker {
+            font-size: 1.3em;
+        }
+
+        .score-display {
+			width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+        
+        .progress-container {
+            margin-top: 10px;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            height: 24px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="javascript:history.back()" class="home-button">
+            <svg width="25.6" height="22.4" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.292893 7.29289C-0.097631 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292893 7.29289ZM18 7L1 7L1 9L18 9L18 7Z" fill="#23236E"/>
+            </svg>
+        </a>
+        <h2>Social Sciences – Psychology</h2>
+        <a href="/" class="home-button">
+            <svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+            </svg>
+        </a>
+    </div>
+    <div id="passageContainer"></div> <form id="quizForm"></form>
+    
+    <div class="score-display" id="scoreDisplay" style="display: none;">
+        <div>Your Score: <span id="scoreValue">0</span> / <span id="totalQuestions">0</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+    <div id="result" class="result"></div>
+    <script>
+        const questions = [
+  {
+    "id": 1,
+    "question": "Which animal did Ivan Pavlov famously use to demonstrate the principles of 'classical conditioning' regarding digestion and salivation?",
+    "options": {
+      "A": "Rats",
+      "B": "Pigeons",
+      "C": "Dogs",
+      "D": "Cats"
+    },
+    "correct_answer": "C",
+    "category": "Famous Experiments"
+  },
+  {
+    "id": 2,
+    "question": "What common term describes the psychological phenomenon where a person feels they have experienced a current situation before?",
+    "options": {
+      "A": "Jamais vu",
+      "B": "Déjà vu",
+      "C": "Presque vu",
+      "D": "Déjà vécu"
+    },
+    "correct_answer": "B",
+    "category": "Cognitive Phenomena"
+  },
+  {
+    "id": 3,
+    "question": "In Sigmund Freud's structural model of the psyche, which component is driven by the 'pleasure principle' and instant gratification?",
+    "options": {
+      "A": "The Superego",
+      "B": "The Self",
+      "C": "The Ego",
+      "D": "The Id"
+    },
+    "correct_answer": "D",
+    "category": "Psychoanalysis"
+  },
+  {
+    "id": 4,
+    "question": "Which geometric shape is traditionally used to visualize Abraham Maslow's hierarchy of human needs?",
+    "options": {
+      "A": "Circle",
+      "B": "Pyramid",
+      "C": "Trapezoid",
+      "D": "Square"
+    },
+    "correct_answer": "B",
+    "category": "Developmental Psychology"
+  },
+  {
+    "id": 5,
+    "question": "The Rorschach test, a projective psychological assessment, asks subjects to interpret what ambiguous images?",
+    "options": {
+      "A": "Clouds",
+      "B": "Inkblots",
+      "C": "Butterflies",
+      "D": "Landscapes"
+    },
+    "correct_answer": "B",
+    "category": "Clinical Psychology"
+  },
+  {
+    "id": 6,
+    "question": "In a medical experiment, if a control group experiences real improvements despite receiving a fake treatment, what is this called?",
+    "options": {
+      "A": "The Placebo Effect",
+      "B": "The Nocebo Effect",
+      "C": "The Bystander Effect",
+      "D": "The Spotlight Effect"
+    },
+    "correct_answer": "A",
+    "category": "Research Methods"
+  },
+  {
+    "id": 7,
+    "question": "Which sleep stage is most strongly associated with vivid dreaming and rapid eye movements?",
+    "options": {
+      "A": "NREM Stage 1",
+      "B": "NREM Stage 2",
+      "C": "NREM Stage 3",
+      "D": "REM Sleep"
+    },
+    "correct_answer": "D",
+    "category": "Biological Psychology"
+  },
+  {
+    "id": 8,
+    "question": "What specific personality trait implies that a person gains energy from spending time alone rather than socializing?",
+    "options": {
+      "A": "Neuroticism",
+      "B": "Extroversion",
+      "C": "Introversion",
+      "D": "Agreeableness"
+    },
+    "correct_answer": "C",
+    "category": "Personality Theory"
+  },
+  {
+    "id": 9,
+    "question": "In the 1960s, Albert Bandura used a 'Bobo Doll' to demonstrate that children learn aggression through which method?",
+    "options": {
+      "A": "Observational learning",
+      "B": "Operant conditioning",
+      "C": "Classical conditioning",
+      "D": "Genetic inheritance"
+    },
+    "correct_answer": "A",
+    "category": "Social Psychology"
+  },
+  {
+    "id": 10,
+    "question": "The tragic murder of Kitty Genovese, where witnesses reportedly failed to act, led researchers to define which social phenomenon?",
+    "options": {
+      "A": "The Pygmalion Effect",
+      "B": "The Halo Effect",
+      "C": "The Hawthorne Effect",
+      "D": "The Bystander Effect"
+    },
+    "correct_answer": "D",
+    "category": "Social Psychology"
+  },
+  {
+    "id": 11,
+    "question": "Stanley Milgram's controversial 1963 experiment at Yale was designed to test how far participants would go in obeying what?",
+    "options": {
+      "A": "Peer pressure",
+      "B": "Moral conscience",
+      "C": "Authority figures",
+      "D": "Religious dogma"
+    },
+    "correct_answer": "C",
+    "category": "Ethics & History"
+  },
+  {
+    "id": 12,
+    "question": "What term did Leon Festinger coin to describe the mental discomfort experienced when holding two conflicting beliefs simultaneously?",
+    "options": {
+      "A": "Cognitive Distortion",
+      "B": "Confirmation Bias",
+      "C": "Cognitive Dissonance",
+      "D": "Attribution Error"
+    },
+    "correct_answer": "C",
+    "category": "Cognitive Psychology"
+  },
+  {
+    "id": 13,
+    "question": "The famous 'Marshmallow Test' conducted at Stanford University was primarily designed to measure a child's capacity for what?",
+    "options": {
+      "A": "Delayed gratification",
+      "B": "Social interaction",
+      "C": "Obedience to rules",
+      "D": "Taste discrimination"
+    },
+    "correct_answer": "A",
+    "category": "Child Development"
+  },
+  {
+    "id": 14,
+    "question": "Which psychologist is most famous for his four-stage theory of cognitive development in children?",
+    "options": {
+      "A": "Erik Erikson",
+      "B": "Lev Vygotsky",
+      "C": "Jean Piaget",
+      "D": "John Bowlby"
+    },
+    "correct_answer": "C",
+    "category": "Famous Psychologists"
+  },
+  {
+    "id": 15,
+    "question": "The 'Stroop Effect' demonstrates interference in reaction time when a person is asked to identify the color of a word that spells what?",
+    "options": {
+      "A": "A different color",
+      "B": "A random animal",
+      "C": "Their own name",
+      "D": "A black object"
+    },
+    "correct_answer": "A",
+    "category": "Cognitive Testing"
+  },
+  {
+    "id": 16,
+    "question": "Harry Harlow's experiments with rhesus monkeys revealed that for infant development, contact comfort was more important than what?",
+    "options": {
+      "A": "Open space",
+      "B": "Clean water",
+      "C": "Warm light",
+      "D": "Food supply"
+    },
+    "correct_answer": "D",
+    "category": "Developmental Psychology"
+  },
+  {
+    "id": 17,
+    "question": "Phineas Gage is a famous case study in neuroscience because his personality drastically changed after an iron rod damaged which brain area?",
+    "options": {
+      "A": "Occipital Lobe",
+      "B": "Frontal Lobe",
+      "C": "Parietal Lobe",
+      "D": "Temporal Lobe"
+    },
+    "correct_answer": "B",
+    "category": "Neuropsychology"
+  },
+  {
+    "id": 18,
+    "question": "What is the specific name for the cognitive bias where people with low ability at a task overestimate their own competence?",
+    "options": {
+      "A": "Imposter Syndrome",
+      "B": "Dunning-Kruger Effect",
+      "C": "Fundamental Attribution Error",
+      "D": "Self-Serving Bias"
+    },
+    "correct_answer": "B",
+    "category": "Cognitive Biases"
+  },
+  {
+    "id": 19,
+    "question": "Carl Jung introduced the concept of the 'Collective Unconscious,' proposing that all humans share inherited mental patterns known as what?",
+    "options": {
+      "A": "Prototypes",
+      "B": "Stereotypes",
+      "C": "Archetypes",
+      "D": "Phenotypes"
+    },
+    "correct_answer": "C",
+    "category": "Analytical Psychology"
+  },
+  {
+    "id": 20,
+    "question": "In the 'Strange Situation' procedure developed by Mary Ainsworth, researchers observe a child's reaction to separation to assess what?",
+    "options": {
+      "A": "Attachment style",
+      "B": "Intelligence quotient",
+      "C": "Language fluency",
+      "D": "Motor coordination"
+    },
+    "correct_answer": "A",
+    "category": "Child Psychology"
+  },
+  {
+    "id": 21,
+    "question": "The 'Rosenhan Experiment' (1973) involved healthy pseudopatients entering psychiatric hospitals to expose flaws in what process?",
+    "options": {
+      "A": "Therapy sessions",
+      "B": "Drug administration",
+      "C": "Patient discharge",
+      "D": "Psychiatric diagnosis"
+    },
+    "correct_answer": "D",
+    "category": "Anti-Psychiatry History"
+  },
+  {
+    "id": 22,
+    "question": "Which rare psychological condition involves the delusional belief that a friend or family member has been replaced by an identical impostor?",
+    "options": {
+      "A": "Cotard's Delusion",
+      "B": "Capgras Delusion",
+      "C": "Fregoli Delusion",
+      "D": "Erotomania"
+    },
+    "correct_answer": "B",
+    "category": "Abnormal Psychology"
+  },
+  {
+    "id": 23,
+    "question": "The 'Zeigarnik Effect' suggests that people remember which type of tasks better than others?",
+    "options": {
+      "A": "Uncompleted tasks",
+      "B": "Completed tasks",
+      "C": "Easy tasks",
+      "D": "Interesting tasks"
+    },
+    "correct_answer": "A",
+    "category": "Memory Theory"
+  },
+  {
+    "id": 24,
+    "question": "What phenomenon describes the observed sustained increase in intelligence test scores measured in many parts of the world over the 20th century?",
+    "options": {
+      "A": "The Barnum Effect",
+      "B": "The Mozart Effect",
+      "C": "The Flynn Effect",
+      "D": "The Pratfall Effect"
+    },
+    "correct_answer": "C",
+    "category": "Psychometrics"
+  }
+];
+
+                const form = document.getElementById("quizForm");
+                
+                questions.forEach((q, index) => {
+                    console.log("Processing Question:", q.id);
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+
+                    const questionText = document.createElement("p");
+                    questionText.innerHTML = `<strong>${index + 1}. ${q.question}</strong>`;
+                    questionDiv.appendChild(questionText);
+
+                    Object.entries(q.options).forEach(([key, value]) => {
+                        const input = document.createElement("input");
+                        input.type = "radio";
+                        input.name = `q${q.id}`;
+                        input.value = key;
+
+                        const label = document.createElement("label");
+                        label.innerHTML = ` ${key}) ${value}<br>`;
+
+                        questionDiv.appendChild(input);
+                        questionDiv.appendChild(label);
+                    });
+
+                    form.appendChild(questionDiv);
+                });
+
+                document.getElementById("submitBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    let score = 0;
+                    let total = questions.length;
+                    let resultText = "<h3>Results:</h3>";
+
+                    questions.forEach(q => {
+                        let selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+                        if (selected) {
+                            if (selected.value === q.correct_answer) {
+                                score++;
+                                resultText += `<p>Question ${q.id}: Correct ✅</p>`;
+                            } else {
+                                resultText += `<p>Question ${q.id}: Incorrect ❌ (Correct: ${q.correct_answer})</p>`;
+                            }
+                        } else {
+                            resultText += `<p>Question ${q.id}: No answer selected ❌ (Correct: ${q.correct_answer})</p>`;
+                        }
+                    });
+
+                    resultText += `<p><strong>Your Score: ${score} / ${total}</strong></p>`;
+                    document.getElementById("result").innerHTML = resultText;
+                    
+                    const scoreDisplay = document.getElementById("scoreDisplay");
+                    scoreDisplay.style.display = "block";
+                    document.getElementById("scoreValue").textContent = score;
+                    document.getElementById("totalQuestions").textContent = total;
+                    
+                    const percentage = Math.round((score / total) * 100);
+                    const progressBar = document.getElementById("progressBar");
+                    progressBar.style.width = `${percentage}%`;
+                    progressBar.textContent = `${percentage}%`;
+                    
+                    if (score < 12) {
+                        progressBar.style.backgroundColor = "#dc3545"; // Red
+                    } else if (score < 20) {
+                        progressBar.style.backgroundColor = "#ffc107"; // Yellow
+                    } else {
+                        progressBar.style.backgroundColor = "#28a745"; // Green
+                    }
+                    
+                    // Create a unique key for this test
+                    const testKey = `social-sciences-psychology`;
+                    
+                    // Save the score
+                    localStorage.setItem(testKey, score);
+                });
+    </script>
+    <footer class="footer">
+    <div class="footer-content">
+        <p>© Copyright 2026</p>
+        <p><a href="mailto:info@superquiz.online" class="footer-email">info@superquiz.online</a></p>
+        <p>All rights reserved</p>        
+        <p class="footer-made">Made by MB</p>
+    </div>
+    </footer>
+</body>
+</html>
